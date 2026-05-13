@@ -1,0 +1,10 @@
+pandas
+numpy
+datasets
+python-dotenv
+matplotlib
+scikit-learn
+transformers
+torch
+sentencepiece
+accelerate
