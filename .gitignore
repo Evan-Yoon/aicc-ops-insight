@@ -42,6 +42,7 @@ htmlcov/
 *_SECRET.txt
 secrets.*
 credentials.*
+aicc_ops_insight_project_guide.md
 
 # =========================================
 # Hugging Face / dataset cache
