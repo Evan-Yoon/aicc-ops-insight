@@ -3,7 +3,7 @@
 AICC 고객 문의 데이터와 공개 경쟁사 자료를 활용해  
 NAVER Cloud CLOVA AiCall 관점의 운영 KPI, 고객 문의 유형, 경쟁사 지표, 운영 개선안을 분석한 포트폴리오 프로젝트입니다.
 
-> 본 프로젝트는 NAVER Cloud 지원 포트폴리오 목적으로 수행한 비공식 분석입니다.  
+> 본 프로젝트는 NAVER Cloud 관련 개인 관심사 바탕으로 AI PaaS 직무 이해도 및 직무 역량 강화를 위해 수행한 분석 프로젝트입니다.  
 > NAVER Cloud 또는 NAVER와 공식적으로 관련된 프로젝트가 아닙니다.
 
 ---
@@ -45,15 +45,6 @@ CLOVA AiCall은 Contact Center, Agent, Channel 구조를 기반으로 Inbound/Ou
 - 공개자료 기반 경쟁사 지표 수집
 - Python 기반 문의 유형 분류 및 점수화
 - 운영 개선안 도출
-
-### Excluded
-
-- eKYC 심층 분석
-- CLOVA Note 사용 테스트
-- 모든 CLOVA 제품 비교
-- 무거운 ML 모델 학습
-- 실제 고객사처럼 보이는 과도한 합성 데이터 생성
-- 개발 구현 중심 설명
 
 ---
 
