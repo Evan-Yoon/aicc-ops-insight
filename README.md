@@ -1,100 +1,67 @@
 # AICC Ops Insight
 
-AICC 고객 문의 데이터와 공개 경쟁사 자료를 활용해  
-NAVER Cloud CLOVA AiCall 관점의 운영 KPI, 고객 문의 유형, 경쟁사 지표, 운영 개선안을 분석한 포트폴리오 프로젝트입니다.
+AI 컨택센터(AICC) 시장이 확대되면서, 실제 운영 현장에서는 어떤 지표를 중심으로 움직이는지 궁금해졌습니다.  
+이 프로젝트는 NAVER Cloud CLOVA AiCall을 중심으로 고객 문의 패턴과 경쟁사 지표를 직접 분석한 작업입니다.
 
-> 본 프로젝트는 NAVER Cloud 관련 개인 관심사 바탕으로 AI PaaS 직무 이해도 및 직무 역량 강화를 위해 수행한 분석 프로젝트입니다.  
 > NAVER Cloud 또는 NAVER와 공식적으로 관련된 프로젝트가 아닙니다.
 
 ---
 
-## 1. Project Overview
+## Overview
 
-본 프로젝트는 AI PaaS 상품 운영 직무에서 필요한 다음 역량을 보여주기 위해 설계했습니다.
+CLOVA AiCall은 Contact Center / Agent / Channel 구조를 기반으로 Inbound·Outbound 콜을 AI Bot으로 처리하는 서비스입니다.  
+이 서비스를 실제로 운영한다면 어떤 지표를 봐야 할지, 고객 문의 데이터를 KPI로 어떻게 연결할 수 있는지 탐구했습니다.
 
-- 상품별 고객 문의 및 CS 운영 현황 분석
-- 주요 이슈 기반 운영 인사이트 도출
-- 경쟁사 동향 모니터링 및 시장 리서치
-- 운영 KPI 정의 및 문서화
-- 솔루션별 품질 평가 및 운영 품질 관리 관점 도출
-
-분석 대상은 NAVER Cloud의 AI Contact Center 상품인 **CLOVA AiCall**을 중심으로 설정했습니다.  
-CLOVA AiCall은 Contact Center, Agent, Channel 구조를 기반으로 Inbound/Outbound Call 업무를 AI Bot으로 처리하는 AICC 서비스입니다.
+- 고객 문의 유형 분류 및 운영 인사이트 도출
+- AICC 운영 KPI 정의
+- KT, LGU+, SKT/SK AX 경쟁사 공개 지표 수집 및 비교
+- 운영 개선 방향 제안
 
 ---
 
-## 2. Why AICC?
+## Why CLOVA AiCall?
 
-여러 AI PaaS 상품 중 AICC를 분석 대상으로 선정한 이유는 다음과 같습니다.
-
-1. 고객 문의, CS 운영, 품질 평가, 운영 리포트와 직접 연결되는 상품입니다.
-2. 상담사 수, 평균 콜 수, 채널 수, 통화 건수 등 운영 KPI로 전환 가능한 정보가 많습니다.
-3. KT, LGU+, SKT/SK AX 등 경쟁사의 공개 수주액, 고객사 수, 매출 목표 자료가 존재합니다.
-4. 지원 직무의 담당업무인 고객 문의 관리, 경쟁사 모니터링, 운영 개선 인사이트 도출과 가장 직접적으로 연결됩니다.
+국내 AICC 시장에서 CLOVA AiCall은 네이버 클라우드의 주요 AI 상품 중 하나입니다.  
+KT, LGU+, SKT/SK AX 등 경쟁사의 공개 자료가 비교적 풍부해 벤치마킹이 가능했고,  
+고객 문의부터 운영 리포트까지 이어지는 흐름을 분석하기에 구조가 명확한 서비스라고 판단했습니다.
 
 ---
 
-## 3. Scope
+## Data Sources
 
-### Included
+직접 크롤링한 데이터는 사용하지 않았습니다.
 
-- AICC 중심 분석
-- NAVER Cloud CLOVA AiCall 중심
-- 경쟁사: KT, LGU+, SKT/SK AX
-- Hugging Face 고객지원 데이터셋 활용
-- 공개자료 기반 경쟁사 지표 수집
-- Python 기반 문의 유형 분류 및 점수화
-- 운영 개선안 도출
+**공개 데이터셋**
+- Hugging Face 고객지원 데이터셋 — 문의 문장, intent, category 기반 분류에 활용
 
----
-
-## 4. Data Sources
-
-본 프로젝트는 무단 크롤링을 하지 않고, 다음 데이터만 활용합니다.
-
-### Public Dataset
-
-- Hugging Face 고객지원 데이터셋
-- 고객 문의 문장, intent, category 기반 문의 유형 분석
-
-### Public Market Sources
-
+**공개 시장 자료**
 - NAVER Cloud CLOVA AiCall 공식 문서
-- KT AICC 관련 공개 기사 및 보도자료
-- LGU+ AICC 관련 공개 기사 및 보도자료
-- SKT/SK AX AICC 관련 공개 기사 및 보도자료
+- KT / LGU+ / SKT·SK AX 관련 공개 기사 및 보도자료
 
-### Synthetic Data
-
-실제 기업의 AICC 도입 문의 데이터는 공개되어 있지 않기 때문에,  
-CLOVA AiCall 문의 양식에서 요구하는 항목을 참고해 제한적인 시뮬레이션 데이터를 사용할 수 있습니다.
-
-합성 데이터는 실제 고객사를 추정하기 위한 목적이 아니라,  
-도입 문의 단계의 정보가 운영 KPI로 어떻게 전환될 수 있는지 검증하기 위한 목적입니다.
+**합성 데이터**  
+실제 기업의 AICC 도입 문의 데이터는 공개되어 있지 않아, CLOVA AiCall 문의 양식 항목을 기반으로  
+도입 문의 단계 정보가 운영 KPI로 어떻게 전환되는지 검증하기 위한 시뮬레이션 데이터를 일부 사용했습니다.
 
 ---
 
-## 5. Analysis Framework
+## Analysis Framework
 
-### Customer Inquiry Classification
+### 문의 유형 분류
 
-고객 문의 문장을 다음 유형으로 분류합니다.
+고객 문의 문장을 아래 유형으로 분류합니다.
 
-- FAQ
+- FAQ / 단순 안내
 - 업무 처리 요청
 - 장애 / 오류
 - 불만 / 클레임
 - 상담원 연결 요청
 - 결제 / 청구
 - 계정 / 인증
-- 단순 안내
 - 캠페인 / 해피콜
 
-### Operation KPI Mapping
+### KPI 매핑
 
-분류된 문의 유형을 AICC 운영 지표로 변환합니다.
-
-| Inquiry Type     | Operation Insight           |
+| 문의 유형        | 운영 관점 인사이트          |
 | ---------------- | --------------------------- |
 | FAQ              | Global Scenario 자동화 후보 |
 | 업무 처리 요청   | Main Scenario 설계 필요     |
@@ -105,11 +72,9 @@ CLOVA AiCall 문의 양식에서 요구하는 항목을 참고해 제한적인 �
 
 ---
 
-## 6. Competitor Benchmarking
+## Competitor Benchmarking
 
-경쟁사는 다음 기준으로 비교합니다.
-
-| Company     | Product / Area           | Key Metrics                          |
+| Company     | Product                  | Key Metrics                          |
 | ----------- | ------------------------ | ------------------------------------ |
 | NAVER Cloud | CLOVA AiCall / HappyCall | 자동화율, 대기시간 감소, 처리율 향상 |
 | KT          | AICC                     | 수주액, 고객사 수, 월 콜 처리량      |
@@ -118,9 +83,7 @@ CLOVA AiCall 문의 양식에서 요구하는 항목을 참고해 제한적인 �
 
 ---
 
-## 7. Expected Outputs
-
-최종 산출물은 다음과 같습니다.
+## Outputs
 
 ```text
 data/
