@@ -1,0 +1,15 @@
+﻿rank,company,product,benchmark_score,evidence_count,avg_evidence_score,covered_metric_groups,market_score
+1,KT,KT Agentic AICC,100.0,9,67.8,"도입 레퍼런스, 산업특화, 시장성, 운영규모, 운영효율, 제품구조",610.3
+2,SKT,SKT AI CCaaS,96.2,11,53.4,"도입 레퍼런스, 시장성, 운영효율, 제품구조",586.9
+3,LGU+,LGU+ AICC,81.2,10,49.5,"시장성, 운영효율, 제품구조, 품질관리, 확장성",495.3
+4,NAVER Cloud,CLOVA AiCall,62.3,5,76.1,"산업특화, 운영효율, 제품구조, 품질관리",380.3
+5,SK AX,SK AICC,60.7,5,74.1,"운영효율, 제품구조, 품질관리",370.3
+6,KT,KT Agent Connector,45.9,5,56.1,"시장성, 운영효율, 제품구조, 확장성",280.3
+7,KTcs,HiQri,30.1,2,92.0,"시장성, 운영효율",184.0
+8,효성ITX,xtrmSolution,29.5,3,60.1,"운영효율, 제품구조",180.3
+9,효성ITX,컨택센터·AICC,20.0,2,60.9,"시장성, 제품구조",121.8
+10,LGU+,LGU+ Agentic AICC,14.7,1,90.0,제품구조,90.0
+11,KT,KT AICC,3.2,3,6.4,운영효율,19.3
+12,KT,KT AI 통화비서,2.9,1,17.9,운영효율,17.9
+13,SKT,SKT AIX/B2B,0.0,1,0.0,시장성,0.0
+14,컨택센터 상장사,AICC 시장 동향,0.0,1,0.0,시장성,0.0
