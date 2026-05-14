@@ -43,6 +43,7 @@ htmlcov/
 secrets.*
 credentials.*
 resources/
+*포트폴리오 복사본.pdf
 # =========================================
 # Hugging Face / dataset cache
 # =========================================
