@@ -118,11 +118,28 @@ outputs/
 
 scripts/
   00_collect_hf_datasets.py
+  01_collect_support_tickets.py
   01_load_dataset.py
   02_classify_inquiries.py
   03_score_kpi.py
   04_benchmark_competitors.py
 ```
+
+### Main Final Files
+
+| File | Description |
+| --- | --- |
+| `data/sources.csv` | 데이터셋, NAVER 공식 자료, 경쟁사/시장 자료 출처 목록 |
+| `data/synthetic_leads.csv` | AiCall 도입 문의 양식 기반 합성 리드 시뮬레이션 |
+| `data/manual/competitor_metrics.csv` | 경쟁사 공개 지표 원천 테이블 |
+| `data/processed/aicc_inquiry_dataset.csv` | 공개 고객지원 데이터를 AICC 운영 분류로 정리한 데이터 |
+| `data/processed/aicc_inquiry_scored.csv` | 문의 유형별 운영 KPI 점수를 붙인 분석 데이터 |
+| `outputs/final/result_summary.csv` | 프로젝트 가이드 방식의 비율 기반 KPI 요약 |
+| `outputs/final/aicc_kpi_summary.csv` | 문의 유형별 건수, 비중, 운영 KPI 점수 요약 |
+| `outputs/final/aicc_operation_priority.csv` | 운영 우선순위와 추천 액션 요약 |
+| `outputs/final/aicc_competitor_benchmark.csv` | 경쟁사 공개자료 기반 벤치마크 결과 |
+| `outputs/final/charts/` | 최종 보고서에 사용할 차트 이미지 |
+| `outputs/final/portfolio_summary.pdf` | 최종 PDF 산출물 자리 |
 
 ### Guide File Mapping
 
@@ -136,3 +153,21 @@ scripts/
 | `outputs/operational_kpi_summary.csv` | `outputs/final/aicc_kpi_summary.csv` |
 | `outputs/competitor_benchmark.csv` | `outputs/final/aicc_competitor_benchmark.csv` |
 | `outputs/result_summary.csv` | `outputs/final/result_summary.csv` |
+
+## Reproduce
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+python scripts/00_collect_hf_datasets.py
+python scripts/01_collect_support_tickets.py
+python scripts/01_load_dataset.py
+python scripts/02_classify_inquiries.py
+python scripts/03_score_kpi.py
+python scripts/04_benchmark_competitors.py
+```
+
+`data/raw/`와 `resources/`는 Git 추적 대상에서 제외했습니다. 원천 PDF와 대용량 원본 데이터는 로컬에서만 관리하고,
+제출용 분석 결과와 출처 요약만 저장소에 포함합니다.
