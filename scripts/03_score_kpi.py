@@ -7,6 +7,7 @@ INPUT_PATH = Path("data/processed/aicc_inquiry_scored.csv")
 
 OUTPUT_CSV = Path("outputs/final/aicc_operation_priority.csv")
 OUTPUT_MD = Path("outputs/final/aicc_operation_priority.md")
+GUIDE_RESULT_CSV = Path("outputs/final/result_summary.csv")
 
 CHART_DIR = Path("outputs/final/charts")
 PRIORITY_CHART = CHART_DIR / "aicc_operation_priority.png"
@@ -141,6 +142,79 @@ def add_recommended_actions(summary: pd.DataFrame) -> pd.DataFrame:
     return enriched
 
 
+def pct(count: int, total: int) -> float:
+    if total == 0:
+        return 0.0
+    return round(count / total * 100, 2)
+
+
+def build_guide_ratio_summary(df: pd.DataFrame) -> pd.DataFrame:
+    counts = df["aicc_label"].value_counts().to_dict()
+    total = len(df)
+
+    def c(label: str) -> int:
+        return int(counts.get(label, 0))
+
+    repair_proxy_count = (
+        c("장애/오류")
+        + c("불만/클레임")
+        + c("계정/인증")
+    )
+
+    rows = [
+        {
+            "metric_group": "guide_ratio_kpi",
+            "metric_name": "자동화 적합도",
+            "score_percent": pct(c("FAQ/단순 안내") + c("업무 처리 요청") + c("기타"), total),
+            "calculation": "FAQ/단순 안내 + 업무 처리 요청 + 기타(LOW_PRIORITY proxy)",
+            "meaning": "음성봇/챗봇으로 처리 가능한 반복·단순·업무 처리 문의 비중",
+            "operation_action": "FAQ와 반복 업무를 Global/Main Scenario로 우선 자동화",
+        },
+        {
+            "metric_group": "guide_ratio_kpi",
+            "metric_name": "Main 시나리오 필요도",
+            "score_percent": pct(c("업무 처리 요청") + c("결제/청구"), total),
+            "calculation": "업무 처리 요청 + 결제/청구",
+            "meaning": "예약·변경·취소·계약·정산 등 업무 처리 흐름이 필요한 문의 비중",
+            "operation_action": "업무 처리 프로세스, 변수 수집, API 연동 포인트 정의",
+        },
+        {
+            "metric_group": "guide_ratio_kpi",
+            "metric_name": "Global 시나리오 필요도",
+            "score_percent": pct(c("FAQ/단순 안내") + c("상담원 연결"), total),
+            "calculation": "FAQ/단순 안내 + 상담원 연결",
+            "meaning": "FAQ·상담원 연결·통화 종료 등 공통 요청 비중",
+            "operation_action": "공통 FAQ와 상담원 연결 정책 표준화",
+        },
+        {
+            "metric_group": "guide_ratio_kpi",
+            "metric_name": "Repair 시나리오 필요도",
+            "score_percent": pct(repair_proxy_count, total),
+            "calculation": "장애/오류 + 불만/클레임 + 계정/인증(REPAIR_RISK proxy)",
+            "meaning": "오류·불만·인증 실패처럼 정상 흐름 이탈 복구가 필요한 문의 비중",
+            "operation_action": "무응답, 의도 불명확, 인증 실패, 오류 상황의 재질문·복구 정책 설계",
+        },
+        {
+            "metric_group": "guide_ratio_kpi",
+            "metric_name": "Auto QA 필요도",
+            "score_percent": pct(c("불만/클레임") + c("장애/오류"), total),
+            "calculation": "불만/클레임 + 장애/오류",
+            "meaning": "불만·장애·오류 등 상담 품질 확인이 필요한 문의 비중",
+            "operation_action": "상담 품질 평가, 키워드 모니터링, 클레임 리뷰 체계 설계",
+        },
+        {
+            "metric_group": "guide_ratio_kpi",
+            "metric_name": "상담원 연결 필요도",
+            "score_percent": pct(c("상담원 연결") + c("불만/클레임") + c("장애/오류"), total),
+            "calculation": "상담원 연결 + 불만/클레임 + 장애/오류",
+            "meaning": "AI 단독 응대보다 상담사 전환이 필요한 문의 비중",
+            "operation_action": "Human Handoff 기준과 상담사 지원 기능 정의",
+        },
+    ]
+
+    return pd.DataFrame(rows)
+
+
 def save_bar_chart(
     df: pd.DataFrame,
     x_col: str,
@@ -255,8 +329,10 @@ def main():
 
     summary = build_priority_table(df)
     summary = add_recommended_actions(summary)
+    guide_ratio_summary = build_guide_ratio_summary(df)
 
     summary.to_csv(OUTPUT_CSV, index=False, encoding="utf-8-sig")
+    guide_ratio_summary.to_csv(GUIDE_RESULT_CSV, index=False, encoding="utf-8-sig")
 
     save_bar_chart(
         summary,
@@ -285,6 +361,7 @@ def main():
     write_markdown_report(summary)
 
     print(f"Saved final operation priority CSV: {OUTPUT_CSV}")
+    print(f"Saved guide ratio KPI summary CSV: {GUIDE_RESULT_CSV}")
     print(f"Saved final operation priority report: {OUTPUT_MD}")
     print(f"Saved chart: {PRIORITY_CHART}")
     print(f"Saved chart: {AUTOMATION_CHART}")
