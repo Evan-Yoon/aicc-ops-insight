@@ -3,7 +3,8 @@
     "allow": [
       "Bash(git rm *)",
       "Bash(git add *)",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "Bash(open /Users/evan-yoon/dev/personal/aicc-ops-insight/outputs/final/portfolio.html)"
     ]
   }
 }
