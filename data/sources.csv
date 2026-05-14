@@ -1,1 +1,24 @@
 source_type,title,provider,url,published_date,notes
+dataset,Bitext Customer Support LLM Chatbot Training Dataset,Hugging Face / Bitext,https://huggingface.co/datasets/bitext/Bitext-customer-support-llm-chatbot-training-dataset,,고객 문의 문장과 intent/category 기반 AICC 문의 유형 분류의 주 데이터셋
+dataset,Customer Support Tickets,Tobi-Bueck / Hugging Face,https://huggingface.co/datasets/Tobi-Bueck/customer-support-tickets,,보조 고객지원 티켓 데이터셋으로 문의 유형 분포 보강에 사용
+dataset,Customer Support Tickets,gorkemsevinc / Hugging Face,https://huggingface.co/datasets/gorkemsevinc/customer_support_tickets,,보조 고객지원 티켓 데이터셋으로 문의 유형 분포 보강에 사용
+official_product,CLOVA AiCall,NAVER Cloud,https://www.ncloud.com/product/aiService/CCAI?region=KR,2026-현재,"CLOVA AiCall 제품 구조, AI 콘택트센터 기능, Agent 확장/축소, 산업 활용, 품질관리 활용 가능성 근거"
+official_guide,CLOVA AiCall User Guide,NAVER Cloud,resources/clova_AiCall,,"Contact Center, Agent, Channel, Main/Global/Repair Scenario, Dashboard, 통계 지표, 권한·감사 운영 근거"
+competitor_source,LG유플러스 AI 고객센터 혁신,전자신문,https://www.etnews.com/20260511000195,2026-05-11,"LGU+ AICC의 AI 상담 어드바이저, Auto QA, 상담 전·중·후 AI 적용, 대기 없는 문제 해결 근거"
+competitor_source,KT 에이전틱 AICC 서비스 공개,뉴시스,https://www.newsis.com/view/NISX20260422_0003601471,2026-04-22,"KT Agentic AICC의 멀티 AI 에이전트, Agent Connector, 구축 기간 단축, 금융권 활용 근거"
+competitor_source,KT AICC 전환 속도,Daum 뉴스,https://v.daum.net/v/0iNYhpsAcX,2026-04-06,"KT 고객센터 AI 상담 응대 비중, 본인인증 시간 단축, 상품판매 성공률, AI 통화비서 처리율 근거"
+competitor_source,KT Agentic AICC,KT Enterprise,https://enterprise.kt.com/bt/dxstory/3796.do,2026-04-01,"KT 공식 자료 기반 자체 고객센터 검증 규모, 구축형 AICC 점유율, 구독형 적용사, 상담 후처리 시간 단축 근거"
+competitor_source,MWC 2026이 주목한 고객센터의 미래,KT Enterprise,https://enterprise.kt.com/bt/dxstory/3783.do,2026-03-19,"KT Agent Connector의 시나리오 봇·AI 에이전트 하이브리드, 워크플로우 분석, SaaS 확장성, LLM 선택 유연성 근거"
+competitor_source,LGU+ Agentic AICC 기술 공개,LG U+,https://www.lguplus.com/about/en/corporation/promotion/press-kit/detail?atclNo=2000001485&pageNo=1&srchCond=titCon,2026-02-25,LGU+ Agentic AICC 공개 및 OpenAI 전략적 MOU 관련 근거
+competitor_source,LGU+ AI 상담 어드바이저 도입 본격,인더스트리뉴스,https://www.industrynews.co.kr/news/articleView.html?idxno=64819,2025-05-27,"LGU+ AICC 매출, 연말 매출 목표, EXAONE 기반 AICC, 익시젠 활용, 다양한 LLM 병행 검토 근거"
+competitor_source,LG유플러스 AICC 고도화 추진,이뉴스투데이,https://www.enewstoday.co.kr/news/articleView.html?idxno=2282327,2025-05-27,LGU+ AICC 고객사 수 보조 근거
+competitor_source,LG유플러스 AICC 고도화 추진,시사저널e,https://www.sisajournal-e.com/news/articleView.html?idxno=412073,2025-05-27,LGU+ AICC 상담시간 감소 목표 보조 근거
+competitor_source,SKT AI 협업툴로 B2B 승부,더벨,https://m.thebell.co.kr/m/newsview.asp?newskey=202501152246262400103559&svccode=,2025-01-16,SKT AIX 사업부와 B2B AICC 전략 방향 보조 근거
+competitor_source,SKT AI CCaaS,SK Telecom Newsroom,https://news.sktelecom.com/208852,2024-12-17,"SKT AI CCaaS 가입 기업 수, 올인원 AICC 패키지, 월정액 구독형, 반복 문의 자동화 근거"
+competitor_source,SKT AI CCaaS 적용 사례,Daum 뉴스,https://v.daum.net/v/6B2NqauSTi,2024-12-17,SKT AI CCaaS 상담사 연결 필요 채팅 감소 및 상담 어시스트 근거
+competitor_source,SKT AI 기반 B2B 사업 확대,IT동아,https://it.donga.com/105112/,2024-03-20,"SKT AI CCaaS 첫 고객사, 단계적 AICC 구축 가능성, 음성인식·챗봇·콜봇·상담분석 기능 범위 근거"
+competitor_source,SKT 공식 뉴스룸,SK Telecom Newsroom,https://news.sktelecom.com/202379,2024-03-20,SKT AI CCaaS의 BPO 포함 End-to-End 제공 근거
+competitor_source,SK AX AICC,SK AX,https://www.skax.co.kr/ax-services/aicc/,2026-현재,"SK AX AICC의 AI 상담 요약, KMS 검색, Hot 키워드 추출, Total Solution, 단순 문의 자동 처리 근거"
+competitor_source,SK AX Contact Center 효율화,SK AX,https://www.skax.co.kr/finance/contact-center-efficiency/,2026-현재,SK AX AICC의 사람 상담사와 AI 시스템 융합 및 상담 업무 최적화 근거
+competitor_source,효성ITX xtrmSolution,효성ITX,https://www.hyosungitx.com/ko/business/contactCenterAiSolution1.do,2026-현재,"효성ITX 컨택센터 전용 Total AI 솔루션, All in One 구조, BPO 운영 노하우 기반 모듈화 근거"
+market_source,AICC 기업 AI 상담 전환 속도 주목,프라임경제,https://m.newsprime.co.kr/section_view.html?menu=index&no=733326,2026-05-13,"컨택센터·AICC 시장 동향, KTcs/효성ITX 실적, AI 상담요약·실시간 답변 추천 확대 보조 근거"
