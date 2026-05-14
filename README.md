@@ -85,22 +85,53 @@ KT, LGU+, SKT/SK AX 등 경쟁사의 공개 자료가 비교적 풍부해 벤치
 
 ## Outputs
 
+프로젝트 가이드는 `src/`와 `outputs/` 루트 중심의 최소 제출 구조를 제안했지만,
+이 저장소에서는 원천/가공/최종 산출물을 구분하기 위해 구조를 조금 확장했습니다.
+분석 스크립트는 `scripts/`, 중간 가공 데이터는 `data/processed/`, 제출용 최종 산출물은
+`outputs/final/`에 모았습니다.
+
 ```text
 data/
   sources.csv
-  classified_inquiries.csv
-  competitor_metrics.csv
-  final_scores.csv
+  synthetic_leads.csv
+  manual/
+    competitor_metrics.csv
+  processed/
+    customer_support_inquiries.csv
+    support_tickets_normalized.csv
+    aicc_inquiry_dataset.csv
+    aicc_inquiry_scored.csv
 
 outputs/
   final/
     aicc_kpi_summary.csv
-    competitor_benchmark.csv
+    aicc_operation_priority.csv
+    aicc_competitor_benchmark.csv
+    result_summary.csv
     portfolio_summary.pdf
+    charts/
+      aicc_operation_priority.png
+      aicc_automation_fit.png
+      aicc_quality_need.png
+      aicc_competitor_benchmark.png
 
 scripts/
+  00_collect_hf_datasets.py
   01_load_dataset.py
   02_classify_inquiries.py
   03_score_kpi.py
   04_benchmark_competitors.py
 ```
+
+### Guide File Mapping
+
+| Guide example | Actual file in this repository |
+| --- | --- |
+| `src/01_load_hf_dataset.py` | `scripts/00_collect_hf_datasets.py`, `scripts/01_load_dataset.py` |
+| `src/02_classify_inquiries.py` | `scripts/01_load_dataset.py` |
+| `src/03_score_operational_kpis.py` | `scripts/02_classify_inquiries.py`, `scripts/03_score_kpi.py` |
+| `src/04_competitor_benchmark.py` | `scripts/04_benchmark_competitors.py` |
+| `outputs/classified_inquiries.csv` | `data/processed/aicc_inquiry_dataset.csv` |
+| `outputs/operational_kpi_summary.csv` | `outputs/final/aicc_kpi_summary.csv` |
+| `outputs/competitor_benchmark.csv` | `outputs/final/aicc_competitor_benchmark.csv` |
+| `outputs/result_summary.csv` | `outputs/final/result_summary.csv` |
