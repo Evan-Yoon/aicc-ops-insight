@@ -1,0 +1,173 @@
+/* ---------- Tokens ---------- */
+:root {
+  --bg: #F7F6F1;
+  --paper: #FBFAF6;
+  --ink: #1E211E;
+  --ink-soft: #3A3E39;
+  --mute: #6E7269;
+  --line: #D8D6CC;
+  --line-soft: #E8E6DD;
+  --accent: #2F5D4C;       /* muted forest */
+  --accent-soft: #DCE6DF;
+  --warn: #8C4A2B;         /* terracotta-ish for risk */
+  --warn-soft: #EFDFD2;
+
+  --serif: "Pretendard", system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-feature-settings: "ss01", "ss02", "tnum";
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* ---------- Page frame ---------- */
+.deck {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 32px 0 64px;
+}
+
+.page {
+  width: 1400px;
+  height: 990px;
+  background: var(--paper);
+  position: relative;
+  overflow: hidden;
+  padding: 56px 72px 56px 72px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 0 var(--line), 0 24px 60px -30px rgba(0,0,0,0.18);
+}
+
+.page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border: 1px solid var(--line-soft);
+}
+
+/* ---------- Page header / footer ---------- */
+.page-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--mute);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.page-head .crumb b {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.page-foot {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--mute);
+  letter-spacing: 0.04em;
+}
+
+.page-foot .stack {
+  display: flex;
+  gap: 14px;
+}
+.page-foot .stack span { color: var(--ink-soft); }
+.page-foot .stack span::before { content: "▮ "; color: var(--accent); }
+
+/* ---------- Typography ---------- */
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin: 0 0 14px;
+}
+
+h1.title {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 52px;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin: 0 0 14px;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+/* #2 — tighten h1–subtitle hierarchy */
+.subtitle {
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0;
+  max-width: 980px;
+}
+
+h2.section-title {
+  font-size: 38px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  margin: 0 0 8px;
+  text-wrap: balance;
+}
+
+h2.section-title .accent { color: var(--accent); }
+
+.section-sub {
+  font-size: 16px;
+  color: var(--mute);
+  margin: 0;
+  font-family: var(--mono);
+  letter-spacing: 0.02em;
+}
+
+.mono { font-family: var(--mono); }
+.num  { font-family: var(--mono); font-feature-settings: "tnum"; }
+
+/* ---------- Print ---------- */
+@page {
+  size: A4 landscape;
+  margin: 0;
+}
+
+@media print {
+  html, body { background: white; }
+  .deck { padding: 0; gap: 0; }
+  .page {
+    box-shadow: none;
+    width: 297mm;
+    height: 210mm;
+    page-break-after: always;
+    break-after: page;
+  }
+  .page:last-child { page-break-after: auto; }
+}

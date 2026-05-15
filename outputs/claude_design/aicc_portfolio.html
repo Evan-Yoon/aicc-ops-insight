@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>AICC 운영 인사이트 분석 · 포트폴리오</title>
+<meta name="viewport" content="width=1400">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="page-styles.css">
+</head>
+<body>
+<div class="deck">
+
+<!-- ============================================================
+     PAGE 1 — Project Overview
+============================================================ -->
+<section class="page" data-screen-label="01 Overview">
+  <header class="page-head">
+    <div class="crumb"><b>AICC OPERATION INSIGHTS</b> &nbsp;/&nbsp; PORTFOLIO 2026</div>
+    <div>P. 01 — OVERVIEW</div>
+  </header>
+
+  <div class="p1-grid">
+    <div class="p1-lead">
+      <div class="p1-lead-head">
+        <p class="eyebrow">Project · CLOVA AiCall</p>
+        <h1 class="title">AICC 운영 인사이트 분석</h1>
+        <p class="subtitle">도입 단계부터 월간 KPI까지, CS 운영자 관점에서 풀어 본 개인 프로젝트</p>
+      </div>
+      <p class="p1-oneline">
+        공개 고객지원 데이터 <b>29,872건</b>과 경쟁사 공개지표 <b>35건+</b>을 바탕으로,<br>
+        CLOVA AiCall 운영 담당자 입장에서 고객 문의를 어떻게 <span class="hl">운영 KPI</span>와 <span class="hl">품질관리 기준</span>으로 풀어낼 수 있을지 정리해 봤습니다.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="p1-bignums">
+    <div class="bignum">
+      <div class="bignum-v num">29,872</div>
+      <div class="bignum-l">공개 고객지원 데이터 (건)</div>
+    </div>
+    <div class="bignum">
+      <div class="bignum-v num">35+</div>
+      <div class="bignum-l">경쟁사 공개지표 (건)</div>
+    </div>
+    <div class="bignum">
+      <div class="bignum-v num">8</div>
+      <div class="bignum-l">운영 레이블 (개)</div>
+    </div>
+    <div class="bignum">
+      <div class="bignum-v num">3</div>
+      <div class="bignum-l">실행안 (도입 전 · 운영 중 · 월간)</div>
+    </div>
+  </div>
+
+  <footer class="page-foot">
+    <div class="stack">
+      <span>Python · pandas · matplotlib</span>
+      <span>공개 CS 데이터셋</span>
+    </div>
+    <div>NAVER CLOUD AI SOLUTION · 운영 지원/관리 직무</div>
+  </footer>
+</section>
+
+<!-- ============================================================
+     PAGE 2 — Analysis Design
+============================================================ -->
+<section class="page" data-screen-label="02 Analysis Design">
+  <header class="page-head">
+    <div class="crumb"><b>AICC OPERATION INSIGHTS</b> &nbsp;/&nbsp; PORTFOLIO 2026</div>
+    <div>P. 02 — ANALYSIS DESIGN</div>
+  </header>
+
+  <div class="p2-hd">
+    <p class="eyebrow">02 · Method</p>
+    <h2 class="section-title">공개 데이터 <span class="accent">→ 운영 지표</span></h2>
+    <p class="section-sub">// public_support_data → operation_kpi.csv</p>
+  </div>
+
+  <!-- flow diagram -->
+  <div class="p2-flow">
+    <div class="flow-node">
+      <div class="flow-step mono">01</div>
+      <div class="flow-title">공개<br>고객지원 데이터</div>
+      <div class="flow-meta mono">29,872 rows</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node">
+      <div class="flow-step mono">02</div>
+      <div class="flow-title">8개 문의<br>레이블</div>
+      <div class="flow-meta mono">분류 기준</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node">
+      <div class="flow-step mono">03</div>
+      <div class="flow-title">AiCall<br>Scenario 매핑</div>
+      <div class="flow-meta mono">Global · Main · QA · Repair</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node">
+      <div class="flow-step mono">04</div>
+      <div class="flow-title">운영 KPI<br>점수화</div>
+      <div class="flow-meta mono">priority_score</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node flow-node--out">
+      <div class="flow-step mono">05</div>
+      <div class="flow-title">경쟁사 공개지표<br>비교</div>
+      <div class="flow-meta mono">benchmark.csv</div>
+    </div>
+  </div>
+
+  <div class="p2-bottom">
+    <ol class="p2-desc">
+      <li>
+        <div class="p2-desc-head"><span class="p2-tag mono">01 DATA</span></div>
+        <p class="p2-desc-body">
+          Bitext 26,872건과 Support Ticket 3,000건을 합쳐 <b>총 29,872건</b>의
+          공개 고객지원 발화를 모았고, 정제와 중복 제거를 거쳐 하나로 묶었습니다.
+        </p>
+      </li>
+      <li>
+        <div class="p2-desc-head"><span class="p2-tag mono">02 MAPPING</span></div>
+        <p class="p2-desc-body">
+          FAQ는 <b>Global</b>, 업무 처리는 <b>Main</b>,
+          장애·불만은 <b>Auto QA + Handoff</b>,
+          불명확한 발화는 <b>Repair</b>로 흘러가도록 시나리오에 매핑했습니다.
+        </p>
+      </li>
+      <li>
+        <div class="p2-desc-head"><span class="p2-tag mono">03 METHOD</span></div>
+        <p class="p2-desc-body">
+          Python pandas로 데이터를 처리하고, 자동화 적합도·Handoff 필요도·Auto QA 필요도·시나리오 복잡도
+          <b>4개 항목</b>을 rule-based로 측정해 <b>운영 우선순위 점수(0–100)</b>를 산출했습니다.
+        </p>
+      </li>
+      <li>
+        <div class="p2-desc-head"><span class="p2-tag mono">04 EVIDENCE</span></div>
+        <p class="p2-desc-body">
+          공식 문서·보도자료를 우선 출처로 두고, 정량 수치만 A등급으로 인용했습니다.
+          비교는 <b>공개자료 범위 안</b>에서만 진행했고, 시뮬레이션 수치는 따로 표시해 구분했습니다.
+        </p>
+      </li>
+    </ol>
+
+    <div class="p2-right-col">
+      <!-- small supporting viz: label coverage stacked bar -->
+      <figure class="p2-viz">
+        <figcaption class="p2-viz-cap mono">FIG · 8개 운영 레이블 비중 (29,872건 기준)</figcaption>
+        <svg viewBox="0 0 520 60" class="p2-stack" preserveAspectRatio="none">
+          <g>
+            <rect x="0"      y="22" width="172.12" height="22" fill="#2F5D4C"/>
+            <rect x="172.12" y="22" width="99.84"  height="22" fill="#54806F"/>
+            <rect x="271.96" y="22" width="82.16"  height="22" fill="#7AA493"/>
+            <rect x="354.12" y="22" width="70.20"  height="22" fill="#A6BFB1"/>
+            <rect x="424.32" y="22" width="24.44"  height="22" fill="#8C4A2B"/>
+            <rect x="448.76" y="22" width="23.92"  height="22" fill="#C58F73"/>
+            <rect x="472.68" y="22" width="17.68"  height="22" fill="#B05A3B"/>
+            <rect x="490.36" y="22" width="29.64"  height="22" fill="#C9C5B6"/>
+          </g>
+          <g font-family="JetBrains Mono" font-size="10" fill="#FFFFFF" font-weight="600" text-anchor="middle">
+            <text x="86.06"  y="36.5">33.1%</text>
+            <text x="222.04" y="36.5">19.2%</text>
+            <text x="313.04" y="36.5">15.8%</text>
+            <text x="389.22" y="36.5">13.5%</text>
+          </g>
+          <g font-family="Pretendard" font-size="11" fill="#3A3E39" text-anchor="middle">
+            <text x="86.06"  y="15">업무 처리</text>
+            <text x="222.04" y="15">결제·청구</text>
+            <text x="313.04" y="15">계정·인증</text>
+            <text x="389.22" y="15">상담원 연결</text>
+          </g>
+          <g stroke="#3A3E39" stroke-width="0.6">
+            <line x1="436.54" y1="44" x2="436.54" y2="50"/>
+            <line x1="460.72" y1="44" x2="460.72" y2="50"/>
+            <line x1="481.52" y1="44" x2="481.52" y2="50"/>
+            <line x1="505.18" y1="44" x2="505.18" y2="50"/>
+          </g>
+        </svg>
+        <p class="p2-stack-legend mono">
+          // 장애 4.7% · FAQ 4.6% · 불만 3.4% · 기타 5.7%
+        </p>
+        <p class="p2-viz-note mono">
+          // 상위 4개 레이블이 전체의 81.6%<br>
+          // 장애·불만은 합쳐도 8.1%지만 운영 우선순위는 가장 높음 → Page 3
+        </p>
+      </figure>
+
+      <!-- competitor category score table -->
+      <div class="p2-comp-wrap">
+        <p class="p2-comp-cap mono">COMPETITOR BENCHMARK · 품질관리가 NAVER Cloud 공개 데이터 기반 유일 비교 카테고리</p>
+        <table class="p2-comp">
+          <thead>
+            <tr>
+              <th>기업</th>
+              <th class="c">도입<br>레퍼런스</th>
+              <th class="c">시장성</th>
+              <th class="c">운영규모</th>
+              <th class="c">운영효율</th>
+              <th class="c">제품구조</th>
+              <th class="c">품질관리</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>KT</td>
+              <td class="sc" style="--pct:100%">100</td>
+              <td class="sc" style="--pct:11%">11</td>
+              <td class="sc" style="--pct:100%">100</td>
+              <td class="sc" style="--pct:100%">100</td>
+              <td class="sc" style="--pct:78%">78</td>
+              <td class="sc dim">—</td>
+            </tr>
+            <tr>
+              <td>SKT</td>
+              <td class="sc dim">—</td>
+              <td class="sc" style="--pct:1%">1</td>
+              <td class="sc dim">—</td>
+              <td class="sc" style="--pct:20%">20</td>
+              <td class="sc" style="--pct:100%">100</td>
+              <td class="sc dim">—</td>
+            </tr>
+            <tr>
+              <td>LGU+</td>
+              <td class="sc dim">—</td>
+              <td class="sc" style="--pct:100%">100</td>
+              <td class="sc dim">—</td>
+              <td class="sc" style="--pct:15%">15</td>
+              <td class="sc" style="--pct:47%">47</td>
+              <td class="sc" style="--pct:100%">100</td>
+            </tr>
+            <tr class="naver-row">
+              <td>NAVER Cloud</td>
+              <td class="sc dim">—</td>
+              <td class="sc dim">—</td>
+              <td class="sc dim">—</td>
+              <td class="sc" style="--pct:1%">1</td>
+              <td class="sc" style="--pct:31%">31</td>
+              <td class="sc" style="--pct:50%">50</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="p2-comp-note mono">// <span style="display:inline-block;width:10px;height:9px;background:#E8E6DE;border-radius:1px;vertical-align:middle;margin-right:3px;"></span>회색 = 공개 자료 없음 · 그룹 내 최고값 대비 정규화 · <b style="color:var(--accent)">품질관리 50</b> → P4 운영 차별화 기준으로 연결</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-foot">
+    <div class="stack">
+      <span>method = label → scenario → score → benchmark</span>
+    </div>
+    <div>P. 02 / 04</div>
+  </footer>
+</section>
+
+<!-- ============================================================
+     PAGE 3 — Key Findings
+============================================================ -->
+<section class="page" data-screen-label="03 Key Findings">
+  <header class="page-head">
+    <div class="crumb"><b>AICC OPERATION INSIGHTS</b> &nbsp;/&nbsp; PORTFOLIO 2026</div>
+    <div>P. 03 — KEY FINDINGS</div>
+  </header>
+
+  <div class="p3-hd">
+    <p class="eyebrow">03 · Finding</p>
+    <h2 class="section-title">문의량 <span class="accent">≠</span> 운영 우선순위</h2>
+  </div>
+
+  <div class="p3-main">
+    <!-- left: scatter chart -->
+    <figure class="p3-chart">
+      <figcaption class="p3-chart-cap">
+        <span class="mono p3-chart-id">FIG.01</span>
+        <span class="p3-chart-title">문의 비중 × 운영 우선순위 점수</span>
+        <span class="mono p3-chart-axes">x = 비중(%) &nbsp;·&nbsp; y = priority score</span>
+      </figcaption>
+
+      <svg viewBox="0 0 760 470" class="p3-scatter">
+        <!-- chart area: x 70..720, y 40..400 -->
+        <defs>
+          <pattern id="dotpat" width="4" height="4" patternUnits="userSpaceOnUse">
+            <circle cx="2" cy="2" r="0.4" fill="#C9C5B6"/>
+          </pattern>
+        </defs>
+
+        <!-- quadrant background: top-left (low volume, high priority) = risk zone -->
+        <rect x="70" y="40" width="180" height="180" fill="#EFDFD2" opacity="0.55"/>
+        <text x="80" y="200" font-family="JetBrains Mono" font-size="10" fill="#8C4A2B" font-weight="600">RISK ZONE · 품질관리 우선</text>
+        <text x="80" y="214" font-family="JetBrains Mono" font-size="9" fill="#8C4A2B">low volume · high priority</text>
+
+        <!-- grid lines -->
+        <g stroke="#E8E6DD" stroke-width="1">
+          <line x1="70"  y1="40"  x2="70"  y2="400"/>
+          <line x1="70"  y1="400" x2="720" y2="400"/>
+          <!-- y grid every 20 from 0..80 -->
+          <line x1="70" y1="310" x2="720" y2="310" stroke-dasharray="2 4"/>
+          <line x1="70" y1="220" x2="720" y2="220" stroke-dasharray="2 4"/>
+          <line x1="70" y1="130" x2="720" y2="130" stroke-dasharray="2 4"/>
+          <!-- x grid every 10% -->
+          <line x1="250" y1="40" x2="250" y2="400" stroke-dasharray="2 4"/>
+          <line x1="430" y1="40" x2="430" y2="400" stroke-dasharray="2 4"/>
+          <line x1="610" y1="40" x2="610" y2="400" stroke-dasharray="2 4"/>
+        </g>
+
+        <!-- threshold line y = 65 priority -->
+        <line x1="70" y1="166" x2="720" y2="166" stroke="#8C4A2B" stroke-width="1" stroke-dasharray="4 4" opacity="0.7"/>
+        <text x="724" y="170" font-family="JetBrains Mono" font-size="9" fill="#8C4A2B">priority = 65</text>
+
+        <!-- y-axis labels (0..80) -->
+        <g font-family="JetBrains Mono" font-size="10" fill="#6E7269" text-anchor="end">
+          <text x="62" y="404">0</text>
+          <text x="62" y="314">20</text>
+          <text x="62" y="224">40</text>
+          <text x="62" y="134">60</text>
+          <text x="62" y="44">80</text>
+        </g>
+        <text x="20" y="220" font-family="JetBrains Mono" font-size="10" fill="#3A3E39"
+              transform="rotate(-90, 20, 220)" text-anchor="middle">priority score</text>
+
+        <!-- x-axis labels 0..36% -->
+        <g font-family="JetBrains Mono" font-size="10" fill="#6E7269" text-anchor="middle">
+          <text x="70"  y="418">0%</text>
+          <text x="250" y="418">10%</text>
+          <text x="430" y="418">20%</text>
+          <text x="610" y="418">30%</text>
+          <text x="718" y="418">36%</text>
+        </g>
+        <text x="395" y="445" font-family="JetBrains Mono" font-size="10" fill="#3A3E39" text-anchor="middle">비중 (share of inquiries, %)</text>
+
+        <!-- helpers: x(pct) = 70 + pct*18 ; y(score) = 400 - score*4.5 -->
+        <!-- 8 labels -->
+        <!-- 업무 처리 33.1 / 58.0 → (665.8, 139) -->
+        <g>
+          <circle cx="665.8" cy="139" r="11" fill="#2F5D4C" opacity="0.95"/>
+          <text x="654" y="123" font-size="11" fill="#1E211E" font-weight="600" text-anchor="end" font-family="Pretendard">업무 처리 요청</text>
+          <text x="654" y="136" font-family="JetBrains Mono" font-size="9.5" fill="#3A3E39" text-anchor="end">33.1% · 58.0</text>
+        </g>
+        <!-- 결제·청구 19.2 / 54.5 → (415.6, 154.75) -->
+        <g>
+          <circle cx="415.6" cy="154.75" r="6" fill="#7AA493" opacity="0.9"/>
+          <text x="423" y="151" font-size="10.5" fill="#3A3E39" font-family="Pretendard">결제·청구</text>
+          <text x="423" y="163" font-family="JetBrains Mono" font-size="9" fill="#6E7269">19.2% · 54.5</text>
+        </g>
+        <!-- 계정·인증 15.8 / 51.2 → (354.4, 169.6) -->
+        <g>
+          <circle cx="354.4" cy="169.6" r="5.5" fill="#7AA493" opacity="0.9"/>
+          <text x="346" y="166" font-size="10.5" fill="#3A3E39" font-family="Pretendard" text-anchor="end">계정·인증</text>
+          <text x="346" y="178" font-family="JetBrains Mono" font-size="9" fill="#6E7269" text-anchor="end">15.8% · 51.2</text>
+        </g>
+        <!-- 상담원 연결 13.5 / 49.8 → (313, 175.9) -->
+        <g>
+          <circle cx="313" cy="175.9" r="5" fill="#A6BFB1" opacity="0.9"/>
+          <text x="313" y="195" font-size="10.5" fill="#3A3E39" font-family="Pretendard" text-anchor="middle">상담원 연결</text>
+          <text x="313" y="207" font-family="JetBrains Mono" font-size="9" fill="#6E7269" text-anchor="middle">13.5% · 49.8</text>
+        </g>
+        <!-- 장애·오류 4.7 / 73.2 — RISK (leader line out of risk zone) -->
+        <g>
+          <circle cx="154.6" cy="70.6" r="10" fill="#8C4A2B" opacity="0.95"/>
+          <circle cx="154.6" cy="70.6" r="16" fill="none" stroke="#8C4A2B" stroke-width="1" opacity="0.4"/>
+          <line x1="166" y1="70.6" x2="275" y2="58" stroke="#8C4A2B" stroke-width="0.8" opacity="0.7"/>
+          <text x="282" y="57" font-size="11.5" fill="#8C4A2B" font-weight="700" font-family="Pretendard">장애·오류</text>
+          <text x="282" y="71" font-family="JetBrains Mono" font-size="9.5" fill="#8C4A2B">4.7% · 73.2</text>
+        </g>
+        <!-- 불만·클레임 3.4 / 73.0 — RISK (leader line out of risk zone) -->
+        <g>
+          <circle cx="131.2" cy="71.5" r="9" fill="#B05A3B" opacity="0.95"/>
+          <circle cx="131.2" cy="71.5" r="15" fill="none" stroke="#B05A3B" stroke-width="1" opacity="0.4"/>
+          <line x1="141" y1="71.5" x2="275" y2="104" stroke="#B05A3B" stroke-width="0.8" opacity="0.7"/>
+          <text x="282" y="103" font-size="11.5" fill="#8C4A2B" font-weight="700" font-family="Pretendard">불만·클레임</text>
+          <text x="282" y="117" font-family="JetBrains Mono" font-size="9.5" fill="#8C4A2B">3.4% · 73.0</text>
+        </g>
+        <!-- FAQ 4.6 / 38.5 → (152.8, 226.75) -->
+        <g>
+          <circle cx="152.8" cy="226.75" r="5.5" fill="#A6BFB1" opacity="0.9"/>
+          <text x="168" y="224" font-size="10.5" fill="#3A3E39" font-family="Pretendard">FAQ · 단순 안내</text>
+          <text x="168" y="236" font-family="JetBrains Mono" font-size="9" fill="#6E7269">4.6% · 38.5</text>
+        </g>
+        <!-- 기타 5.7 / 31.5 → (172.6, 258.25) -->
+        <g>
+          <circle cx="172.6" cy="258.25" r="4.5" fill="#C9C5B6" opacity="0.9"/>
+          <text x="183" y="262" font-size="10" fill="#6E7269" font-family="Pretendard">기타 · 5.7% · 31.5</text>
+        </g>
+
+        <!-- annotation arrow from high-volume to risk cluster -->
+        <path d="M 640 150 Q 520 220 410 220" fill="none" stroke="#3A3E39" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.45"/>
+        <text x="525" y="248" font-family="JetBrains Mono" font-size="10" fill="#3A3E39" text-anchor="middle" opacity="0.75">
+          high volume ≠ high operational risk
+        </text>
+      </svg>
+    </figure>
+
+    <!-- right: takeaway + mini table -->
+    <aside class="p3-side">
+      <p class="p3-take">
+        <span class="p3-take-mark">▮</span>
+        자동화부터 검토할 유형과<br>
+        <b>품질관리로 먼저 챙겨야 할 유형이 서로 다른 자리에 모였습니다.</b>
+      </p>
+
+      <ul class="p3-bullets">
+        <li><b class="num">33.1%</b> · 업무 처리 요청 — 최다 문의, Main Scenario 후보</li>
+        <li><b class="num">4.7%</b> · 장애·오류 — priority <b>73.2</b>, Auto QA + Handoff + Repair</li>
+        <li><b class="num">3.4%</b> · 불만·클레임 — priority <b>73.0</b>, Auto QA 우선 적용</li>
+        <li><b class="num">4.6%</b> · FAQ — priority <b>38.5</b>, Global Scenario 자동화 후보</li>
+      </ul>
+
+      <table class="p3-table">
+        <thead>
+          <tr>
+            <th>문의 유형</th>
+            <th class="num">비중</th>
+            <th class="num">우선순위</th>
+            <th>운영 연결</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>업무 처리 요청</td>
+            <td class="num">33.1%</td>
+            <td class="num">58.0</td>
+            <td>Main</td>
+          </tr>
+          <tr class="risk">
+            <td>장애·오류</td>
+            <td class="num">4.7%</td>
+            <td class="num"><b>73.2</b></td>
+            <td>Auto QA + Handoff</td>
+          </tr>
+          <tr class="risk">
+            <td>불만·클레임</td>
+            <td class="num">3.4%</td>
+            <td class="num"><b>73.0</b></td>
+            <td>Auto QA</td>
+          </tr>
+          <tr>
+            <td>FAQ · 단순 안내</td>
+            <td class="num">4.6%</td>
+            <td class="num">38.5</td>
+            <td>Global</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="p3-note mono">
+        // competitor note<br>
+        KT · LGU+ · SKT/SK AX는 수주액, 고객사 수, Auto QA, 상담 어시스턴트 등<br>
+        공개 운영지표를 꾸준히 노출 → 정기 모니터링 항목으로 잡았습니다.
+      </p>
+    </aside>
+  </div>
+
+  <footer class="page-foot">
+    <div class="stack">
+      <span>aicc_operation_priority.csv</span>
+      <span>n = 29,872</span>
+    </div>
+    <div>P. 03 / 04</div>
+  </footer>
+</section>
+
+<!-- ============================================================
+     PAGE 4 — Operation Proposal
+============================================================ -->
+<section class="page" data-screen-label="04 Operation Proposal">
+  <header class="page-head">
+    <div class="crumb"><b>AICC OPERATION INSIGHTS</b> &nbsp;/&nbsp; PORTFOLIO 2026</div>
+    <div>P. 04 — OPERATION PROPOSAL</div>
+  </header>
+
+  <div class="p4-hd">
+    <p class="eyebrow">04 · Action</p>
+    <h2 class="section-title">단계별 <span class="accent">운영 실행안</span></h2>
+    <p class="section-sub">// 장애·불만 priority 73+ × 품질관리 차별화 포인트 — 두 발견을 3단계 운영 기준으로</p>
+  </div>
+
+  <div class="p4-cards">
+    <article class="p4-card">
+      <header class="p4-card-head">
+        <span class="p4-step mono">01</span>
+        <div>
+          <p class="p4-stage mono">도입 전 · PRE-ONBOARDING</p>
+          <h3 class="p4-title">문의 접수 단계<br>구조화</h3>
+        </div>
+      </header>
+
+      <section class="p4-block">
+        <p class="p4-block-label mono">기준 · CRITERIA</p>
+        <ul>
+          <li>상담사 수 / 월 콜 볼륨</li>
+          <li>주요 문의 유형 분포 사전 파악</li>
+          <li>기존 솔루션 / 희망 기능</li>
+        </ul>
+      </section>
+
+      <section class="p4-block p4-block--out">
+        <p class="p4-block-label mono">산출물 · OUTPUT</p>
+        <ul>
+          <li>도입 유형 분류표</li>
+          <li>계약·과금 검토 항목</li>
+          <li>유관부서 커뮤니케이션 기준</li>
+        </ul>
+      </section>
+    </article>
+
+    <article class="p4-card">
+      <header class="p4-card-head">
+        <span class="p4-step mono">02</span>
+        <div>
+          <p class="p4-stage mono">운영 중 · IN-OPERATION</p>
+          <h3 class="p4-title">CS 워크플로우<br>표준화</h3>
+        </div>
+      </header>
+
+      <section class="p4-block">
+        <p class="p4-block-label mono">기준 · CRITERIA</p>
+        <ul>
+          <li>업무처리(33%) → Main Scenario</li>
+          <li>장애·불만(8%, priority 73+) → Auto QA 우선</li>
+          <li>FAQ → Global Scenario 자동화</li>
+        </ul>
+      </section>
+
+      <section class="p4-block p4-block--out">
+        <p class="p4-block-label mono">산출물 · OUTPUT</p>
+        <ul>
+          <li>유형별 Handoff 기준표</li>
+          <li>Auto QA 적용 대상 선정</li>
+          <li>Repair 개선 후보 목록</li>
+        </ul>
+      </section>
+    </article>
+
+    <article class="p4-card">
+      <header class="p4-card-head">
+        <span class="p4-step mono">03</span>
+        <div>
+          <p class="p4-stage mono">월간 관리 · MONTHLY</p>
+          <h3 class="p4-title">고객사별<br>KPI 리포트</h3>
+        </div>
+      </header>
+
+      <section class="p4-block">
+        <p class="p4-block-label mono">기준 · CRITERIA</p>
+        <ul>
+          <li>통화 건수 / 상담원 연결률</li>
+          <li>자동화율 / Auto QA 비율</li>
+          <li>품질 지표 추이 (장애·불만 중심)</li>
+        </ul>
+      </section>
+
+      <section class="p4-block p4-block--out">
+        <p class="p4-block-label mono">산출물 · OUTPUT</p>
+        <ul>
+          <li>고객사별 월간 KPI 리포트</li>
+          <li>계약·정산 검토</li>
+          <li>품질관리 카테고리 경쟁사 갱신</li>
+        </ul>
+      </section>
+    </article>
+  </div>
+
+  <div class="p4-limit">
+    <p class="p4-limit-label mono">LIMITATION · 참고 분석</p>
+    <p class="p4-limit-body">
+      이 프로젝트는 NAVER Cloud 내부 데이터가 아니라
+      <b>공개된 고객지원 데이터</b>와 <b>외부 공개자료</b>를 사용했습니다.
+      따라서 본문의 수치는 실제 고객 현황이나 시장점유율이 아니며,
+      운영 지표 설계와 경쟁사 모니터링 프레임을 직접 검증해 보기 위한
+      <b>참고용 분석</b>으로 봐 주시면 됩니다.
+    </p>
+  </div>
+
+  <footer class="page-foot">
+    <div class="stack">
+      <span>pre · in-op · monthly</span>
+      <span>aicc_kpi_summary.csv</span>
+    </div>
+    <div>P. 04 / 04 — END</div>
+  </footer>
+</section>
+
+</div>
+</body>
+</html>
