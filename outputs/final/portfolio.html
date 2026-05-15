@@ -2,443 +2,382 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AICC 운영 인사이트 분석 포트폴리오</title>
+  <title>AICC 운영 인사이트 분석</title>
   <style>
-    @page { size: A4 portrait; margin: 0; }
+    @page { size: A4 landscape; margin: 0; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       font-family: 'Apple SD Gothic Neo', -apple-system, 'Malgun Gothic', 'Noto Sans KR', sans-serif;
-      background: #dcdcdc;
+      background: #d4d4d4;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
       color: #1a1a1a;
       word-break: keep-all;
     }
-
     .page {
-      width: 210mm;
-      min-height: 297mm;
-      background: #ffffff;
-      margin: 10mm auto;
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.18);
-      display: flex;
-      flex-direction: column;
+      width: 297mm; height: 210mm;
+      background: #fff; margin: 8mm auto;
+      overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+      display: flex; flex-direction: column;
     }
 
-    /* ── HEADER ── */
-    .header {
-      background: #1b1b2f;
-      color: white;
-      padding: 17px 30px 13px;
-    }
-    .header-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 9px;
-    }
-    .project-name {
-      font-size: 29px;
-      font-weight: 900;
-      line-height: 1.2;
-      letter-spacing: -0.5px;
-    }
-    .project-name .accent { color: #03c75a; }
-    .project-tag {
-      font-size: 11px;
-      color: #7575a0;
-      margin-top: 5px;
-    }
-    .meta-block {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 6px;
-      padding-top: 3px;
-    }
-    .meta-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 10.5px;
-      color: #c8c8dd;
-    }
-    .meta-icon {
-      width: 18px; height: 18px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 3px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 11px; flex-shrink: 0;
-    }
-    .headline {
-      font-size: 12.5px;
-      font-weight: 700;
-      color: #eeeeee;
-      border-left: 3px solid #03c75a;
-      padding-left: 11px;
-      line-height: 1.6;
-    }
+    /* ── HEADERS ── */
+    .hdr { background: #1b1b2f; color: #fff; padding: 12px 30px 10px; flex-shrink: 0; }
+    .hdr-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 7px; }
+    .proj-title { font-size: 27px; font-weight: 900; letter-spacing: -0.5px; line-height: 1.15; }
+    .proj-title .g { color: #03c75a; }
+    .proj-sub { font-size: 10.5px; color: #6f6f9a; margin-top: 3px; }
+    .hdr-meta { display: flex; gap: 7px; align-items: center; }
+    .meta-pill { background: rgba(255,255,255,0.07); border-radius: 4px; padding: 4px 9px; font-size: 9px; color: #c0c0d8; }
+    .hdr-line { border-left: 3px solid #03c75a; padding-left: 11px; font-size: 11.5px; font-weight: 600; color: #ddd; line-height: 1.55; }
 
-    /* ── BODY ── */
-    .body {
-      display: flex;
-      align-items: stretch;
-      flex: 1;
-    }
-    .main {
-      flex: 1;
-      padding: 14px 22px;
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .sidebar {
-      width: 162px; min-width: 162px;
-      padding: 14px 13px;
-      border-left: 1px solid #e6e6ee;
-      background: #f8f8fb;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+    .hdr-sm { background: #1b1b2f; padding: 8px 30px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+    .hdr-sm-l { display: flex; align-items: center; gap: 10px; }
+    .hdr-sm-t { font-size: 13px; font-weight: 800; color: #fff; }
+    .hdr-sm-t .g { color: #03c75a; }
+    .hdr-sm-sep { color: #35354e; font-size: 15px; }
+    .hdr-sm-sec { font-size: 12px; font-weight: 700; color: #03c75a; }
+    .hdr-sm-pg { font-size: 9px; color: #52527a; }
 
-    /* ── SECTIONS ── */
-    .sec-title {
-      font-size: 12px;
-      font-weight: 700;
-      color: #1b1b2f;
-      margin-bottom: 6px;
-      display: flex; align-items: center; gap: 7px;
-    }
-    .sec-title::after {
-      content: ''; flex: 1; height: 1px; background: #dde0ea;
-    }
+    /* ── CONTENT ── */
+    .cnt { flex: 1; padding: 15px 28px 13px; display: flex; flex-direction: column; gap: 10px; min-height: 0; overflow: hidden; }
 
-    p  { font-size: 10.5px; line-height: 1.62; color: #333; margin-bottom: 3px; }
-    ul { padding-left: 14px; }
-    li { font-size: 10.5px; line-height: 1.6; color: #333; margin-bottom: 2px; }
-    .sub {
-      font-size: 10px; font-weight: 700; color: #1b1b2f;
-      margin: 5px 0 2px;
-      background: #f0f0f7;
-      border-left: 2px solid #1b1b2f;
-      padding: 2px 7px;
-      border-radius: 0 3px 3px 0;
-      display: inline-block;
-    }
-    strong { font-weight: 700; }
-    .hl { color: #03c75a; font-weight: 700; }
+    /* ── SECTION TITLE ── */
+    .sec { font-size: 13.5px; font-weight: 700; color: #1b1b2f; display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .sec::after { content: ''; flex: 1; height: 1px; background: #e0e0ec; }
 
-    /* ── TABLE ── */
-    table { width: 100%; border-collapse: collapse; font-size: 10px; margin: 5px 0; }
-    th {
-      background: #1b1b2f; color: white;
-      padding: 4px 8px; font-weight: 600; text-align: left;
-    }
-    td { padding: 2px 8px; border-bottom: 1px solid #eee; color: #333; }
-    tr:nth-child(even) td { background: #f6f6fa; }
-    td.hi { color: #03c75a; font-weight: 700; }
+    /* ── STAT BAR ── */
+    .stat-bar { display: flex; flex-shrink: 0; background: #f5f5fb; border: 1px solid #e2e2ef; border-radius: 6px; overflow: hidden; }
+    .stat-cell { flex: 1; text-align: center; padding: 9px 8px; border-right: 1px solid #e2e2ef; }
+    .stat-cell:last-child { border-right: none; }
+    .stat-n { font-size: 19px; font-weight: 900; color: #03c75a; display: block; line-height: 1.2; }
+    .stat-l { font-size: 9.5px; color: #666; display: block; margin-top: 2px; line-height: 1.4; }
 
-    /* ── INTERPRETATION BOX ── */
-    .interp {
-      background: #f0f8f4;
-      border-left: 3px solid #03c75a;
-      padding: 6px 11px;
-      margin-top: 6px;
-      font-size: 10px;
-      color: #333;
-      line-height: 1.65;
-    }
+    /* ── KEYWORDS ── */
+    .kw-row { display: flex; gap: 7px; align-items: center; flex-shrink: 0; }
+    .kw-lbl { font-size: 9.5px; color: #aaa; font-weight: 600; white-space: nowrap; }
+    .kw { background: #f0f0f8; border-radius: 20px; padding: 4px 12px; font-size: 10.5px; font-weight: 600; color: #1b1b2f; }
 
-    /* ── COMPETITOR GRID ── */
-    .comp-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5px;
-      margin-top: 5px;
-    }
-    .comp-card {
-      background: #f7f7fb;
-      border: 1px solid #e5e5ec;
-      border-radius: 4px;
-      padding: 7px 10px;
-    }
-    .comp-card.naver-card { border-left: 3px solid #03c75a; }
-    .comp-name {
-      font-size: 10.5px; font-weight: 700; color: #1b1b2f;
-      margin-bottom: 3px;
-    }
-    .comp-name.naver { color: #03c75a; }
-    .comp-desc { font-size: 9.5px; color: #444; line-height: 1.58; }
+    /* ══ PAGE 1 ══ */
+    .p1-split { display: grid; grid-template-columns: 3fr 2fr; gap: 20px; flex: 1; min-height: 0; }
+    .p1-why-lbl { font-size: 9px; font-weight: 700; color: #03c75a; text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 9px; }
+    .p1-desc { font-size: 12.5px; color: #333; line-height: 1.78; margin-bottom: 11px; }
+    .p1-points { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .p1-points li { font-size: 12px; color: #444; line-height: 1.65; padding-left: 15px; position: relative; }
+    .p1-points li::before { content: '→'; position: absolute; left: 0; color: #03c75a; font-weight: 700; }
 
-    /* ── OPERATION PROPOSAL ── */
-    .proposal-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 5px;
-      margin-top: 5px;
-    }
-    .proposal-card {
-      background: #1b1b2f;
-      border-radius: 5px;
-      padding: 8px 9px;
-    }
-    .proposal-num { color: #03c75a; font-size: 8.5px; font-weight: 700; margin-bottom: 3px; }
-    .proposal-title { color: white; font-size: 9.5px; font-weight: 700; margin-bottom: 4px; line-height: 1.4; }
-    .proposal-desc { color: #8892a4; font-size: 9px; line-height: 1.58; }
+    /* ── DATA SOURCE TABLE ── */
+    .ds-box { background: #f5f5fb; border-radius: 8px; padding: 14px 15px; height: 100%; display: flex; flex-direction: column; }
+    .ds-box-title { font-size: 9.5px; font-weight: 700; color: #1b1b2f; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 9px; flex-shrink: 0; }
+    .ds { width: 100%; border-collapse: collapse; }
+    .ds th { background: #1b1b2f; color: #fff; padding: 7px 10px; font-size: 9.5px; font-weight: 600; text-align: left; }
+    .ds th:last-child { text-align: right; }
+    .ds td { padding: 6px 10px; border-bottom: 1px solid #e0e0eb; font-size: 11px; color: #444; vertical-align: middle; }
+    .ds tr:last-child td { border-bottom: none; }
+    .ds td:last-child { text-align: right; }
+    .ds td.hi { color: #03c75a; font-weight: 700; }
+    .ds td.dim { color: #999; }
+
+    /* ══ PAGE 2 ══ */
+    .flow-wrap { background: #1b1b2f; border-radius: 8px; padding: 11px 16px; display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+    .fb { flex: 1; text-align: center; }
+    .fb-step { font-size: 7.5px; font-weight: 700; color: #03c75a; display: block; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .fb-text { font-size: 11.5px; font-weight: 700; color: #fff; line-height: 1.3; }
+    .fb-sub { font-size: 9px; color: #8892a4; margin-top: 3px; line-height: 1.35; display: block; }
+    .flow-arr { color: #03c75a; font-size: 16px; font-weight: 700; flex-shrink: 0; }
+
+    .chart-fill { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; }
+    .chart-fill img { max-width: 100%; max-height: 100%; width: 100%; height: 100%; object-fit: contain; display: block; }
+
+    /* ══ PAGE 3 ══ */
+    .chart-pair { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .chart-col { display: flex; flex-direction: column; min-height: 0; }
+    .chart-lbl { font-size: 11px; font-weight: 700; color: #1b1b2f; text-align: center; margin-bottom: 4px; flex-shrink: 0; }
+    .chart-col img { flex: 1; min-height: 0; width: 100%; height: 100%; object-fit: contain; display: block; }
+
+    .interp { background: #f0f8f4; border-left: 3px solid #03c75a; padding: 8px 13px; border-radius: 0 4px 4px 0; flex-shrink: 0; font-size: 12px; color: #333; line-height: 1.68; }
+    .interp strong { color: #1b1b2f; }
+
+    /* ══ PAGE 4 ══ */
+    .p4-split { display: grid; grid-template-columns: 3fr 2fr; gap: 17px; flex: 1; min-height: 0; }
+    .p4-left { display: flex; flex-direction: column; min-height: 0; }
+    .p4-right { display: flex; flex-direction: column; gap: 9px; min-height: 0; }
+
+    .at { width: 100%; border-collapse: collapse; }
+    .at th { background: #1b1b2f; color: #fff; padding: 7px 11px; font-size: 10px; font-weight: 600; text-align: left; }
+    .at td { padding: 6.5px 11px; border-bottom: 1px solid #ebebf0; font-size: 11px; color: #333; vertical-align: middle; line-height: 1.5; }
+    .at tr:nth-child(even) td { background: #f7f7fb; }
+    .at td:last-child { font-size: 10px; color: #777; white-space: nowrap; }
+    .at td.hi { color: #03c75a; font-weight: 700; }
+    .at td strong { color: #1b1b2f; font-weight: 700; }
+
+    .comp-box2 { background: #f5f5fb; border-radius: 8px; padding: 11px 13px; }
+    .comp-box2-title { font-size: 9px; font-weight: 700; color: #1b1b2f; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 7px; }
+    .comp-box2 img { width: 100%; height: auto; display: block; }
+    .comp-notes { margin-top: 7px; font-size: 10px; color: #555; line-height: 1.7; }
+    .comp-notes .dim { color: #aaa; }
 
     /* ── LIMITATION ── */
-    .limitation {
-      background: #f5f5f7;
-      border: 1px solid #e0e0e8;
-      border-radius: 4px;
-      padding: 6px 11px;
-      font-size: 9.5px;
-      color: #666;
-      line-height: 1.65;
-    }
+    .limit { background: #f5f5f8; border: 1px solid #e0e0ea; border-radius: 4px; padding: 8px 13px; font-size: 10px; color: #666; line-height: 1.7; flex-shrink: 0; }
 
-    /* ── SIDEBAR ── */
-    .sb-sec { }
-    .sb-title {
-      font-size: 10px; font-weight: 700; color: #1b1b2f;
-      border-bottom: 2px solid #1b1b2f;
-      padding-bottom: 3px; margin-bottom: 7px;
-    }
-    .sb-item {
-      font-size: 9px; color: #444; margin-bottom: 3px;
-      padding-left: 10px; position: relative; line-height: 1.5;
-    }
-    .sb-item::before {
-      content: '·'; position: absolute; left: 0;
-      color: #1b1b2f; font-weight: 900; font-size: 14px; top: -2px;
-    }
-    .sb-item.jd::before { color: #03c75a; }
-
-    .sb-chart { width: 100%; border-radius: 3px; display: block; margin: 4px 0; }
-    .sb-chart-caption { font-size: 7.8px; color: #999; line-height: 1.5; margin-top: 2px; }
-
-    /* Evidence Rule 박스 */
-    .evidence-rule {
-      background: #1b1b2f;
-      border-radius: 4px;
-      padding: 7px 9px;
-    }
-    .er-title {
-      color: #03c75a;
-      font-size: 9px;
-      font-weight: 700;
-      margin-bottom: 5px;
-    }
-    .er-item {
-      font-size: 8px;
-      color: #aab0c0;
-      padding-left: 9px;
-      position: relative;
-      margin-bottom: 3px;
-      line-height: 1.45;
-    }
-    .er-item::before {
-      content: '–';
-      position: absolute;
-      left: 0;
-      color: #03c75a;
-      font-weight: 700;
-    }
-
-    /* Tools compact (단순 텍스트 나열) */
-    .tools-line {
-      font-size: 8px;
-      color: #999;
-      line-height: 1.7;
-    }
-
-    @media print {
-      body { background: white; }
-      .page { margin: 0; box-shadow: none; }
-    }
+    @media print { body { background: #fff; } .page { margin: 0; box-shadow: none; } }
   </style>
 </head>
 <body>
-<div class="page">
 
-  <!-- ══ HEADER ══ -->
-  <div class="header">
-    <div class="header-top">
+<!-- ══════════ PAGE 1 : 표지 ══════════ -->
+<div class="page">
+  <div class="hdr">
+    <div class="hdr-top">
       <div>
-        <div class="project-name">AICC <span class="accent">운영</span> 인사이트 분석</div>
-        <div class="project-tag">CLOVA AiCall 도입 문의·CS 운영·품질관리 지표화 프로젝트</div>
+        <div class="proj-title">AICC <span class="g">운영</span> 인사이트 분석</div>
+        <div class="proj-sub">CLOVA AiCall 도입 문의 · CS 운영 · 품질관리 지표화 프로젝트</div>
       </div>
-      <div class="meta-block">
-        <div class="meta-item"><div class="meta-icon">📅</div>2026.05</div>
-        <div class="meta-item"><div class="meta-icon">🔍</div>AICC 운영 분석</div>
-        <div class="meta-item"><div class="meta-icon">🏢</div>NAVER Cloud AI Solution 직무 지원 프로젝트</div>
+      <div class="hdr-meta">
+        <div class="meta-pill">2026.05</div>
+        <div class="meta-pill">AICC 운영 분석</div>
+        <div class="meta-pill">NAVER Cloud AI Solution 직무 지원 프로젝트</div>
+        <div class="meta-pill">1 / 4</div>
       </div>
     </div>
-    <div class="headline">| 공개 고객지원 데이터와 AICC 경쟁사 공개자료를 활용해, CLOVA AiCall 운영 담당자 관점에서 고객 문의 유형·CS 운영 지표·품질관리 필요도·경쟁사 모니터링 항목을 구조화한 프로젝트</div>
+    <div class="hdr-line">공개 고객지원 데이터 29,872건과 경쟁사 공개지표 35건+를 바탕으로, CLOVA AiCall 운영 담당자 관점에서 고객 문의·CS 현황·품질관리·경쟁사 모니터링 항목을 구조화한 프로젝트</div>
   </div>
 
-  <!-- ══ BODY ══ -->
-  <div class="body">
-
-    <!-- ── MAIN ── -->
-    <div class="main">
-
-      <!-- 1. Why AICC -->
+  <div class="cnt">
+    <div class="p1-split">
       <div>
-        <div class="sec-title">Why AICC</div>
-        <p>NAVER Cloud AI Solution 운영 직무는 AI PaaS 상품의 고객 문의, CS 운영 현황, 경쟁사 동향, 품질 평가를 관리해야 한다. CLOVA AiCall은 고객센터 운영·상담 자동화·상담원 연결·품질관리와 직접 연결되는 상품으로, 공개자료 기반 운영 지표화 프레임 설계 대상으로 선정했다. 또한 KT, LGU+, SKT/SK AX 등이 수주액·고객사 수·Auto QA 기능 등 공개 지표를 적극 제시하고 있어 경쟁사 동향 모니터링 관점에서도 분석 가치가 높다고 판단했다.</p>
-      </div>
-
-      <!-- 2. Analysis Design -->
-      <div>
-        <div class="sec-title">Analysis Design</div>
-        <div class="sub">① 고객 문의 데이터 구조화</div>
-        <ul>
-          <li>공개 고객지원 데이터 <strong>29,872건</strong> 활용 — Bitext Customer Support 26,872건 + Support Ticket 샘플 3,000건</li>
-          <li>문의 유형을 <strong>8개 운영 레이블</strong>로 재분류: 업무 처리 요청 / 결제·청구 / 계정·인증 / 상담원 연결 / 장애·오류 / 불만·클레임 / FAQ·단순 안내 / 기타</li>
-        </ul>
-        <div class="sub">② CLOVA AiCall 운영 구조와 연결</div>
-        <ul>
-          <li>AiCall 도입 문의 양식의 상담사 수·평균 콜 수·기존 솔루션·희망 기능 항목을 참고해, 문의 유형을 <strong>Main / Global / Repair Scenario</strong>와 연결하고 운영 규모·기능 수요 판단 항목으로 해석했다.</li>
-          <li>장애·불만 유형은 <strong>Auto QA 및 Human Handoff 필요도</strong>로 분류</li>
-        </ul>
-        <div class="sub">③ 경쟁사 공개 지표 정리</div>
-        <ul>
-          <li>KT, LGU+, SKT/SK AX의 수주액, 고객사 수, 월 콜 처리량, Auto QA, 상담 어시스턴트 등 공개 지표 수집</li>
-          <li>실제 시장점유율이 아닌 <strong>"공개 운영지표 노출도"</strong> 기준으로 비교</li>
+        <div class="p1-why-lbl">Why AICC</div>
+        <div class="p1-desc">NAVER Cloud AI Solution 운영 직무는 AI PaaS 상품의 고객 문의, CS 운영 현황, 경쟁사 동향, 품질 평가를 관리해야 한다. CLOVA AiCall은 고객센터 운영·상담 자동화·상담원 연결·품질관리와 직접 연결되는 상품으로, 공개자료 기반 운영 지표화 프레임을 설계하기에 적합한 대상으로 판단했다.</div>
+        <ul class="p1-points">
+          <li>공개 고객지원 데이터 29,872건 → 8개 운영 레이블로 재분류, AiCall 시나리오·Auto QA·Handoff 필요도 점수화</li>
+          <li>KT·LGU+·SKT/SK AX는 수주액·고객사 수·월 콜 처리량 등 정량 지표를 적극 공개 → 경쟁사 모니터링 항목으로 설정</li>
+          <li>공식 가이드에서 확인 가능한 통화 건수·채널 수·상담원 연결률을 월간 KPI 기준으로 정리</li>
         </ul>
       </div>
-
-      <!-- 3. Key Findings -->
-      <div>
-        <div class="sec-title">Key Findings</div>
-        <table>
+      <div class="ds-box">
+        <div class="ds-box-title">Data Source</div>
+        <table class="ds">
           <thead>
             <tr>
-              <th>문의 유형</th><th>건수</th><th>비중</th><th>운영 우선순위</th><th>AiCall 운영 연결</th>
+              <th>구분</th>
+              <th>출처</th>
+              <th>규모</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td class="hi">장애/오류</td><td>1,412</td><td>4.73%</td><td class="hi">73.2점 (1위)</td><td>Auto QA + Human Handoff</td></tr>
-            <tr><td class="hi">불만/클레임</td><td>1,000</td><td>3.35%</td><td class="hi">73.0점 (2위)</td><td>Auto QA + Human Handoff</td></tr>
-            <tr><td>계정/인증</td><td>5,469</td><td>18.31%</td><td>64.2점</td><td>Main Scenario</td></tr>
-            <tr><td>결제/청구</td><td>7,468</td><td>25.00%</td><td>60.0점</td><td>Main Scenario</td></tr>
-            <tr><td>업무 처리 요청</td><td>9,896</td><td>33.13%</td><td>58.0점</td><td>Main Scenario (최다 비중)</td></tr>
-            <tr><td>FAQ/단순 안내</td><td>1,384</td><td>4.63%</td><td>38.5점</td><td>Global Scenario 자동화</td></tr>
+            <tr>
+              <td>문의 데이터</td>
+              <td>Bitext Customer Support (HuggingFace)</td>
+              <td class="hi">26,872건</td>
+            </tr>
+            <tr>
+              <td>문의 데이터</td>
+              <td>Support Ticket 샘플</td>
+              <td class="hi">3,000건</td>
+            </tr>
+            <tr>
+              <td>경쟁사 지표</td>
+              <td>공개 보도자료 · IR · 발표자료</td>
+              <td class="hi">35건+</td>
+            </tr>
+            <tr>
+              <td>공식 가이드</td>
+              <td>CLOVA AiCall 공식 문서</td>
+              <td class="dim">정성</td>
+            </tr>
+            <tr>
+              <td>도입 시뮬레이션</td>
+              <td>AiCall 도입 문의 양식 기반</td>
+              <td class="hi">50건</td>
+            </tr>
           </tbody>
         </table>
-        <div class="interp">문의량 기준으로는 <strong>업무 처리 요청</strong>이 최다였지만, 운영 우선순위 기준으로는 <strong>장애/오류·불만/클레임</strong>이 최상위였다. 단순 빈도가 아닌 상담원 연결 필요도·Auto QA 필요도·Repair Scenario 필요도를 함께 반영해 <strong>운영 리스크 기준</strong>으로 재해석했다.</div>
       </div>
-
-      <!-- 4. Competitor Insight -->
-      <div>
-        <div class="sec-title">Competitor Insight &nbsp;<span style="font-size:9.5px;font-weight:400;color:#888;">— 경쟁사 공개 운영지표 인사이트</span></div>
-        <div class="comp-grid">
-          <div class="comp-card">
-            <div class="comp-name">KT</div>
-            <div class="comp-desc">수주액, 고객사 수, 월 콜 처리량 등 정량 지표가 가장 풍부. NH농협은행 400억 수주·300개+ 고객사·월 1,500만 콜 역량 공개</div>
-          </div>
-          <div class="comp-card">
-            <div class="comp-name">LGU+</div>
-            <div class="comp-desc">AICC 매출 목표(350억), 70개+ 고객사, AI 상담 어드바이저, Auto QA 등 품질관리 고도화 방향 적극 공개</div>
-          </div>
-          <div class="comp-card">
-            <div class="comp-name">SKT / SK AX</div>
-            <div class="comp-desc">구독형 AICC·올인원 운영 구조, 상담 요약·KMS 검색·Hot 키워드 등 상담 지원 기능 강조. 출시 3개월 내 50개사 도입 문의</div>
-          </div>
-          <div class="comp-card naver-card">
-            <div class="comp-name naver">NAVER Cloud</div>
-            <div class="comp-desc">Inbound/Outbound·Agent 확장·축소, 보험·투자상품 불완전판매 모니터링 활용 가능성은 확인됨. 다만 외부 공개자료 기준 최근 수주액·고객사 수·Auto QA 성과 지표는 경쟁사 대비 상대적으로 덜 노출됨.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 5. Operation Proposal -->
-      <div>
-        <div class="sec-title">Operation Proposal</div>
-        <div class="proposal-grid">
-          <div class="proposal-card">
-            <div class="proposal-num">① 도입 문의 접수 단계 구조화</div>
-            <div class="proposal-title">신규 도입 / 재구축 / 고도화 분류</div>
-            <div class="proposal-desc">상담사 수·평균 콜 수·기존 솔루션·자체/아웃소싱 여부·희망 기능을 기준으로 고객 유형을 사전 분류한다.</div>
-          </div>
-          <div class="proposal-card">
-            <div class="proposal-num">② CS 문의 유형별 워크플로우 표준화</div>
-            <div class="proposal-title">문의 유형 → 시나리오 매핑</div>
-            <div class="proposal-desc">FAQ→Global, 업무 처리→Main, 장애·불만→Auto QA + Handoff, 무응답·불명확 발화→Repair Scenario 개선 후보로 관리한다.</div>
-          </div>
-          <div class="proposal-card">
-            <div class="proposal-num">③ 고객사별 운영 KPI 리포트 템플릿</div>
-            <div class="proposal-title">월간 리포트 항목 설계</div>
-            <div class="proposal-desc">통화 건수·평균 통화시간·상담원 연결률·자동화 처리율·Auto QA 대상 비율·캠페인별 발신 성공률을 포함하고, 사용량 기반 계약·정산 검토 항목으로 연결한다.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 6. Limitation -->
-      <div class="limitation">
-        <strong>※ Limitation</strong> — 본 분석은 실제 NAVER Cloud 내부 데이터가 아닌 공개 고객지원 데이터와 외부 공개자료 기반이다. 결과는 실제 고객 현황이나 시장점유율이 아니라, 운영 지표 설계와 경쟁사 모니터링 프레임 검증용 참고 분석이다.
-      </div>
-
     </div>
 
-    <!-- ── SIDEBAR ── -->
-    <div class="sidebar">
+    <div class="kw-row">
+      <span class="kw-lbl">담당업무 연결</span>
+      <span class="kw">계약·정산</span>
+      <span class="kw">CS 운영</span>
+      <span class="kw">경쟁사 모니터링</span>
+      <span class="kw">워크플로우 문서화</span>
+      <span class="kw">품질 평가</span>
+    </div>
 
-      <div class="sb-sec">
-        <div class="sb-title">Data</div>
-        <div class="sb-item">공개 고객지원 데이터 29,872건</div>
-        <div class="sb-item">경쟁사 공개 지표 35건+</div>
-        <div class="sb-item">CLOVA AiCall 공식 가이드</div>
-        <div class="sb-item">AiCall 문의 양식 기반 시뮬레이션</div>
-      </div>
-
-      <div class="sb-sec">
-        <div class="sb-title">Output</div>
-        <div class="sb-item">문의 유형 분류표</div>
-        <div class="sb-item">운영 KPI 점수표</div>
-        <div class="sb-item">경쟁사 공개 지표 비교</div>
-        <div class="sb-item">운영 리포트 개선안</div>
-      </div>
-
-      <div class="sb-sec">
-        <div class="sb-title">경쟁사 공개지표 노출도</div>
-        <img class="sb-chart" src="charts/aicc_competitor_benchmark.png" alt="경쟁사 벤치마크">
-        <div class="sb-chart-caption">※ 실제 시장점유율이 아닌 공개자료 기반 운영지표 노출도 점수</div>
-      </div>
-
-      <div class="sb-sec">
-        <div class="sb-title">직무 연결</div>
-        <div class="sb-item jd">계약·정산 운영 관리</div>
-        <div class="sb-item jd">CS 운영 현황 관리</div>
-        <div class="sb-item jd">주요 이슈 인사이트 도출</div>
-        <div class="sb-item jd">경쟁사 동향 모니터링</div>
-        <div class="sb-item jd">운영 워크플로우 문서화</div>
-        <div class="sb-item jd">품질 평가·퀄리티 매니지먼트</div>
-      </div>
-
-      <div class="sb-sec">
-        <div class="evidence-rule">
-          <div class="er-title">Evidence Rule</div>
-          <div class="er-item">공식 문서·보도자료 우선</div>
-          <div class="er-item">정량 수치 포함 근거 우선</div>
-          <div class="er-item">공개자료 기준으로만 비교</div>
-          <div class="er-item">시뮬레이션 데이터는 별도 표시</div>
-        </div>
-      </div>
-
-      <div class="sb-sec">
-        <div class="sb-title">Tools</div>
-        <div class="tools-line">Python · pandas · HF Datasets · Public Source Summary</div>
-      </div>
-
+    <div class="stat-bar">
+      <div class="stat-cell"><span class="stat-n">29,872건</span><span class="stat-l">공개 고객지원 데이터</span></div>
+      <div class="stat-cell"><span class="stat-n">35건+</span><span class="stat-l">경쟁사 공개 지표</span></div>
+      <div class="stat-cell"><span class="stat-n">8개</span><span class="stat-l">운영 레이블</span></div>
+      <div class="stat-cell"><span class="stat-n">3개</span><span class="stat-l">운영 개선 실행안</span></div>
     </div>
   </div>
 </div>
+
+
+<!-- ══════════ PAGE 2 : Analysis Design ══════════ -->
+<div class="page">
+  <div class="hdr-sm">
+    <div class="hdr-sm-l">
+      <span class="hdr-sm-t">AICC <span class="g">운영</span> 인사이트 분석</span>
+      <span class="hdr-sm-sep">|</span>
+      <span class="hdr-sm-sec">Analysis Design</span>
+    </div>
+    <span class="hdr-sm-pg">2 / 4</span>
+  </div>
+
+  <div class="cnt">
+    <div class="sec">Analysis Design — 공개자료를 운영 KPI로 바꾸는 방식</div>
+
+    <div class="flow-wrap">
+      <div class="fb">
+        <span class="fb-step">Step 1</span>
+        <div class="fb-text">공개 고객지원<br>데이터 수집</div>
+        <span class="fb-sub">29,872건</span>
+      </div>
+      <div class="flow-arr">→</div>
+      <div class="fb">
+        <span class="fb-step">Step 2</span>
+        <div class="fb-text">8개 운영<br>레이블 분류</div>
+        <span class="fb-sub">업무처리 / 결제 / 계정<br>장애 / 불만 / FAQ / 기타</span>
+      </div>
+      <div class="flow-arr">→</div>
+      <div class="fb">
+        <span class="fb-step">Step 3</span>
+        <div class="fb-text">AiCall 시나리오<br>매핑</div>
+        <span class="fb-sub">Main / Global / Repair</span>
+      </div>
+      <div class="flow-arr">→</div>
+      <div class="fb">
+        <span class="fb-step">Step 4</span>
+        <div class="fb-text">운영 KPI<br>우선순위 산출</div>
+        <span class="fb-sub">Auto QA · Handoff · Repair<br>0–100점 점수화</span>
+      </div>
+      <div class="flow-arr">→</div>
+      <div class="fb">
+        <span class="fb-step">Step 5</span>
+        <div class="fb-text">경쟁사<br>지표 비교</div>
+        <span class="fb-sub">공개자료 기준 4개사</span>
+      </div>
+    </div>
+
+    <div class="chart-fill">
+      <img src="charts/inquiry_distribution.png" alt="문의 유형별 분포" />
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════ PAGE 3 : Key Findings ══════════ -->
+<div class="page">
+  <div class="hdr-sm">
+    <div class="hdr-sm-l">
+      <span class="hdr-sm-t">AICC <span class="g">운영</span> 인사이트 분석</span>
+      <span class="hdr-sm-sep">|</span>
+      <span class="hdr-sm-sec">Key Findings</span>
+    </div>
+    <span class="hdr-sm-pg">3 / 4</span>
+  </div>
+
+  <div class="cnt">
+    <div class="sec">Key Findings — 문의량과 운영 리스크는 달랐다</div>
+
+    <div class="chart-pair">
+      <div class="chart-col">
+        <div class="chart-lbl">① 문의량 기준 분포 (건수 비중 %)</div>
+        <img src="charts/inquiry_volume_p3.png" alt="문의 유형별 비중" />
+      </div>
+      <div class="chart-col">
+        <div class="chart-lbl">② 운영 우선순위 점수 (0–100)</div>
+        <img src="charts/inquiry_priority_p3.png" alt="운영 우선순위 점수" />
+      </div>
+    </div>
+
+    <div class="interp">
+      문의량 기준으로는 <strong>업무 처리 요청(33.1%)</strong>이 최다였지만, 운영 우선순위 기준으로는 <strong>장애/오류(73.2점)·불만/클레임(73.0점)</strong>이 최상위였다. Auto QA·Handoff·Repair 필요도를 종합한 운영 리스크 기준으로 재해석하면 <strong>품질관리 우선 대상과 자동화 우선 대상이 명확히 분리</strong>된다.
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════ PAGE 4 : Operation Proposal ══════════ -->
+<div class="page">
+  <div class="hdr-sm">
+    <div class="hdr-sm-l">
+      <span class="hdr-sm-t">AICC <span class="g">운영</span> 인사이트 분석</span>
+      <span class="hdr-sm-sep">|</span>
+      <span class="hdr-sm-sec">Operation Proposal</span>
+    </div>
+    <span class="hdr-sm-pg">4 / 4</span>
+  </div>
+
+  <div class="cnt">
+    <div class="sec">Operation Proposal — 분석 결과 → 운영 액션</div>
+
+    <div class="p4-split">
+      <div class="p4-left">
+        <table class="at">
+          <thead>
+            <tr>
+              <th style="width:37%">발견 (Key Finding)</th>
+              <th style="width:44%">운영 액션 (Action)</th>
+              <th style="width:19%">직무 연결</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>업무 처리 요청 <strong>33.1%</strong> — 문의량 최다</td>
+              <td>Main Scenario 표준화 · API 연동 프로세스 문서화</td>
+              <td>워크플로우 문서화</td>
+            </tr>
+            <tr>
+              <td class="hi">장애/오류 <strong>73.2점</strong> — 리스크 최상위</td>
+              <td>Auto QA + Human Handoff + Repair Scenario 강화</td>
+              <td>CS 운영 · 품질 평가</td>
+            </tr>
+            <tr>
+              <td class="hi">불만/클레임 Auto QA 필요도 <strong>95점</strong></td>
+              <td>상담 품질 모니터링 기준 수립 · 퀄리티 매니지먼트</td>
+              <td>품질 평가</td>
+            </tr>
+            <tr>
+              <td>FAQ/단순 안내 <strong>38.5점</strong> — 자동화 적합</td>
+              <td>Global Scenario 자동화 우선 설계</td>
+              <td>워크플로우 문서화</td>
+            </tr>
+            <tr>
+              <td>신규 도입 고객 분류 기준 필요</td>
+              <td>상담사 수·평균 콜 수·기존 솔루션 기반 도입 유형 분류표 설계</td>
+              <td>계약·정산</td>
+            </tr>
+            <tr>
+              <td>경쟁사 KT·SKT 정량 지표 풍부 공개</td>
+              <td>수주액·고객사 수·Auto QA 성과 정기 모니터링</td>
+              <td>경쟁사 모니터링</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="p4-right">
+        <div class="comp-box2">
+          <div class="comp-box2-title">Competitor Insight — 공개자료 기준 운영지표 노출도</div>
+          <img src="charts/competitor_white.png" alt="경쟁사 공개 운영지표 노출도" />
+          <div class="comp-notes">
+            <strong>KT</strong> — 수주액·고객사 수·월 콜 처리량 정량 지표 가장 풍부<br>
+            <strong>SKT/SK AX</strong> — 구독형 AICC·상담 요약·KMS 검색 강조<br>
+            <strong>LGU+</strong> — AICC 매출 목표·Auto QA 고도화 방향 적극 공개<br>
+            <strong>NAVER Cloud</strong> — 공식 가이드 기준 운영 구조 확인됨<br>
+            <span class="dim">※ 실제 시장점유율이 아닌 공개자료 기반 운영지표 노출도 점수</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="limit">
+      <strong>※ Limitation</strong> — 본 분석은 실제 NAVER Cloud 내부 데이터가 아닌 공개 고객지원 데이터와 외부 공개자료 기반이다. 결과는 실제 고객 현황이나 시장점유율이 아니라 운영 지표 설계와 경쟁사 모니터링 프레임 검증용 참고 분석이다. 후속 분석에서는 실제 운영 로그·한국어 콜센터 데이터를 반영해 개선할 수 있다.
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
