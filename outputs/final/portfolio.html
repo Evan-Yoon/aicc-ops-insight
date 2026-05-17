@@ -140,14 +140,14 @@
         <div class="meta-pill">1 / 4</div>
       </div>
     </div>
-    <div class="hdr-line">공개 고객지원 데이터 29,872건과 경쟁사 공개지표 35건+를 바탕으로, CLOVA AiCall 운영 담당자 관점에서 고객 문의·CS 현황·품질관리·경쟁사 모니터링 항목을 구조화한 프로젝트</div>
+    <div class="hdr-line">Bitext 공개 고객지원 taxonomy(26,872건) + Support ticket(3,000건)을 AICC 운영 레이블·시나리오·품질관리 우선순위로 재분류하고, 경쟁사 공개지표 35건+와 대조해 CLOVA AiCall 운영 담당자 관점의 실행 프레임을 설계한 프로젝트</div>
   </div>
 
   <div class="cnt">
     <div class="p1-split">
       <div>
         <div class="p1-why-lbl">Why AICC</div>
-        <div class="p1-desc">NAVER Cloud AI Solution 운영 직무는 AI PaaS 상품의 고객 문의, CS 운영 현황, 경쟁사 동향, 품질 평가를 관리해야 한다. CLOVA AiCall은 고객센터 운영·상담 자동화·상담원 연결·품질관리와 직접 연결되는 상품으로, 공개자료 기반 운영 지표화 프레임을 설계하기에 적합한 대상으로 판단했다.</div>
+        <div class="p1-desc">NAVER Cloud AI Solution 운영 직무는 AI PaaS 상품의 고객 문의, CS 운영 현황, 경쟁사 동향, 품질 평가를 관리해야 한다. CLOVA AiCall은 고객센터 운영·상담 자동화·상담원 연결·품질관리와 직접 연결되는 상품으로, 공개자료 기반 운영 지표화 프레임을 설계하기에 적합한 대상으로 판단했다. 실제 운영 로그가 없는 상황에서 공개 taxonomy를 운영 레이블로 번역하는 방식을 택했으며, 이는 AICC 운영 담당자가 고객 문의를 어떤 기준으로 구조화할지 설계하는 역량을 보여주기 위한 것이다.</div>
         <ul class="p1-points">
           <li>공개 고객지원 데이터 29,872건 → 8개 운영 레이블로 재분류, AiCall 시나리오·Auto QA·Handoff 필요도 점수화</li>
           <li>KT·LGU+·SKT/SK AX는 수주액·고객사 수·월 콜 처리량 등 정량 지표를 적극 공개 → 경쟁사 모니터링 항목으로 설정</li>
@@ -232,31 +232,31 @@
       <div class="fb">
         <span class="fb-step">Step 1</span>
         <div class="fb-text">공개 고객지원<br>데이터 수집</div>
-        <span class="fb-sub">29,872건</span>
+        <span class="fb-sub">Bitext 27개 intent →<br>AICC 운영 관점 번역 필요</span>
       </div>
       <div class="flow-arr">→</div>
       <div class="fb">
         <span class="fb-step">Step 2</span>
         <div class="fb-text">8개 운영<br>레이블 분류</div>
-        <span class="fb-sub">업무처리 / 결제 / 계정<br>장애 / 불만 / FAQ / 기타</span>
+        <span class="fb-sub">AiCall 시나리오 타입에<br>맞춰 재분류</span>
       </div>
       <div class="flow-arr">→</div>
       <div class="fb">
         <span class="fb-step">Step 3</span>
         <div class="fb-text">AiCall 시나리오<br>매핑</div>
-        <span class="fb-sub">Main / Global / Repair</span>
+        <span class="fb-sub">문의 유형별 적합<br>시나리오 타입 대응</span>
       </div>
       <div class="flow-arr">→</div>
       <div class="fb">
         <span class="fb-step">Step 4</span>
         <div class="fb-text">운영 KPI<br>우선순위 산출</div>
-        <span class="fb-sub">Auto QA · Handoff · Repair<br>0–100점 점수화</span>
+        <span class="fb-sub">자동화 적합도 + 위험도<br>가중 0–100점 산출</span>
       </div>
       <div class="flow-arr">→</div>
       <div class="fb">
         <span class="fb-step">Step 5</span>
         <div class="fb-text">경쟁사<br>지표 비교</div>
-        <span class="fb-sub">공개자료 기준 4개사</span>
+        <span class="fb-sub">KT·LGU+·SKT와<br>공개 KPI 노출도 대조</span>
       </div>
     </div>
 
@@ -293,7 +293,7 @@
     </div>
 
     <div class="interp">
-      문의량 기준으로는 <strong>업무 처리 요청(33.1%)</strong>이 최다였지만, 운영 우선순위 기준으로는 <strong>장애/오류(73.2점)·불만/클레임(73.0점)</strong>이 최상위였다. Auto QA·Handoff·Repair 필요도를 종합한 운영 리스크 기준으로 재해석하면 <strong>품질관리 우선 대상과 자동화 우선 대상이 명확히 분리</strong>된다.
+      문의량 기준으로는 <strong>업무 처리 요청(33.1%)</strong>이 최다였지만, 운영 우선순위 기준으로는 <strong>장애/오류(73.2점)·불만/클레임(73.0점)</strong>이 최상위였다. Auto QA·Handoff·Repair 필요도를 종합한 운영 리스크 기준으로 재해석하면 품질관리 우선 대상과 자동화 우선 대상이 명확히 분리된다. → <strong>자동화 우선군:</strong> FAQ(자동화 90점)·업무처리(75점) / <strong>품질관리 우선군:</strong> 장애·오류(Auto QA 85점)·불만·클레임(Auto QA 95점)
     </div>
   </div>
 </div>
@@ -350,9 +350,9 @@
               <td>계약·정산</td>
             </tr>
             <tr>
-              <td>경쟁사 KT·SKT 정량 지표 풍부 공개</td>
-              <td>수주액·고객사 수·Auto QA 성과 정기 모니터링</td>
-              <td>경쟁사 모니터링</td>
+              <td>NAVER 콜 수·통화시간·채널·캠페인 대시보드 강점</td>
+              <td>월간 운영 리포트 · 고객사 정산 템플릿 표준화</td>
+              <td>CS 운영 · 계약·정산</td>
             </tr>
           </tbody>
         </table>
@@ -363,10 +363,10 @@
           <div class="comp-box2-title">Competitor Insight — 공개자료 기준 운영지표 노출도</div>
           <img src="charts/competitor_white.png" alt="경쟁사 공개 운영지표 노출도" />
           <div class="comp-notes">
-            <strong>KT</strong> — 수주액·고객사 수·월 콜 처리량 정량 지표 가장 풍부<br>
-            <strong>SKT/SK AX</strong> — 구독형 AICC·상담 요약·KMS 검색 강조<br>
-            <strong>LGU+</strong> — AICC 매출 목표·Auto QA 고도화 방향 적극 공개<br>
-            <strong>NAVER Cloud</strong> — 공식 가이드 기준 운영 구조 확인됨<br>
+            <strong>KT [규모·효과]</strong> — 구독형 400여개사, 월 1,500만 콜, 월 17만 human-call 절감, 후처리 42초 단축<br>
+            <strong>LGU+ [품질관리·상담지원]</strong> — Auto QA 전·중·후 전 과정, 자원효율 30%↑, 처리시간 7%↓<br>
+            <strong>SKT [도입편의·풀패키지]</strong> — 올인원 구독형, 출시 3개월 10개+ 가입·50개+ 도입 문의<br>
+            <strong>NAVER [운영구성·관측성]</strong> — keyword session 실시간 관측, 불완전판매 모니터링, Inbound/Outbound + 캠페인 관리<br>
             <span class="dim">※ 실제 시장점유율이 아닌 공개자료 기반 운영지표 노출도 점수</span>
           </div>
         </div>
