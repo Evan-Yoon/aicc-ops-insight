@@ -27,8 +27,9 @@
         <p class="subtitle">도입 단계부터 월간 KPI까지, CS 운영자 관점에서 풀어 본 개인 프로젝트</p>
       </div>
       <p class="p1-oneline">
-        Bitext 공개 taxonomy(26,872건) + Support ticket(3,000건)을 <span class="hl">AICC 운영 레이블·시나리오·품질관리 우선순위</span>로 재분류하고,<br>
-        경쟁사 공개지표 <b>35건+</b>와 대조해 CLOVA AiCall 운영 담당자 관점의 <span class="hl">실행 프레임</span>을 설계해 봤습니다.
+        NAVER Cloud는 Contact Center–Agent–Channel 구조와 통화 건수·채널 수·서비스 이용 시간 등 <span class="hl">운영 단위를 가장 구체적으로 공개</span>하지만,<br>
+        고객-facing <b>상담 진입·KPI 패키징</b>은 경쟁사보다 덜 제품화되어 있습니다.<br>
+        이 포트폴리오는 공개 CS 데이터(29,872건)와 경쟁사 공개 표면 리서치를 통해 <span class="hl">그 공백을 3개 운영 액션으로 구조화</span>한 결과입니다.
       </p>
     </div>
 
@@ -49,7 +50,7 @@
     </div>
     <div class="bignum">
       <div class="bignum-v num">3</div>
-      <div class="bignum-l">실행안 (도입 전 · 운영 중 · 월간)</div>
+      <div class="bignum-l">운영 액션 (진단형 폼 · KPI패키지 · QA)</div>
     </div>
   </div>
 
@@ -74,7 +75,7 @@
   <div class="p2-hd">
     <p class="eyebrow">02 · Method</p>
     <h2 class="section-title">공개 데이터 <span class="accent">→ 운영 지표</span></h2>
-    <p class="section-sub">// public_support_data → operation_kpi.csv</p>
+    <p class="section-sub">// 29,872건 공개 문의 → 8개 운영 레이블 → 우선순위 점수화 · 경쟁사 공개 표면 리서치</p>
   </div>
 
   <!-- flow diagram -->
@@ -184,68 +185,59 @@
         </p>
       </figure>
 
-      <!-- competitor category score table -->
+      <!-- competitor inquiry surface comparison -->
       <div class="p2-comp-wrap">
-        <p class="p2-comp-cap mono">COMPETITOR BENCHMARK · 품질관리가 NAVER Cloud 공개 데이터 기반 유일 비교 카테고리</p>
+        <p class="p2-comp-cap mono">COMPETITOR SURFACE · 공식 상담 신청 폼·제품 페이지 공개 신호 비교</p>
         <table class="p2-comp">
           <thead>
             <tr>
-              <th>기업</th>
-              <th class="c">도입<br>레퍼런스</th>
-              <th class="c">시장성</th>
-              <th class="c">운영규모</th>
-              <th class="c">운영효율</th>
-              <th class="c">제품구조</th>
-              <th class="c">품질관리</th>
+              <th>벤더</th>
+              <th>제품명</th>
+              <th>상담 진입 특징</th>
+              <th>가격·성과 공개</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>KT</td>
-              <td class="sc" style="--pct:100%">100</td>
-              <td class="sc" style="--pct:11%">11</td>
-              <td class="sc" style="--pct:100%">100</td>
-              <td class="sc" style="--pct:100%">100</td>
-              <td class="sc" style="--pct:78%">78</td>
-              <td class="sc dim">—</td>
+              <td><b>KT</b></td>
+              <td>A'Cen Cloud</td>
+              <td>좌석수·IVR 환경·보이스봇 도입 여부를 컨설팅 체크포인트로 사전 수집</td>
+              <td>구축비 없는 선택형 가격 구조 공개</td>
             </tr>
             <tr>
-              <td>SKT</td>
-              <td class="sc dim">—</td>
-              <td class="sc" style="--pct:1%">1</td>
-              <td class="sc dim">—</td>
-              <td class="sc" style="--pct:20%">20</td>
-              <td class="sc" style="--pct:100%">100</td>
-              <td class="sc dim">—</td>
+              <td><b>LGU+</b></td>
+              <td>AICC 클라우드 / BPO</td>
+              <td>상품별 가입상담 분리, 부서·직책·메모 수집</td>
+              <td>상담사당·bot당 단가 공개, 도입 프로세스 명시</td>
             </tr>
             <tr>
-              <td>LGU+</td>
-              <td class="sc dim">—</td>
-              <td class="sc" style="--pct:100%">100</td>
-              <td class="sc dim">—</td>
-              <td class="sc" style="--pct:15%">15</td>
-              <td class="sc" style="--pct:47%">47</td>
-              <td class="sc" style="--pct:100%">100</td>
+              <td><b>SKT</b></td>
+              <td>AI CCaaS</td>
+              <td>Call Infra + 상담 앱 + AI 솔루션 + 전용회선 + BPO 올인원 메시지</td>
+              <td>월정액 구독형·도입 성과 메시지 전면 노출</td>
+            </tr>
+            <tr>
+              <td><b>SK AX</b></td>
+              <td>AICC</td>
+              <td>업종·부서·직급·문의 내용 수집 명시, SaaS/SI/BPO 분기</td>
+              <td>상담요약·Hot 키워드·상담분석·KMS 전면 강조</td>
             </tr>
             <tr class="naver-row">
-              <td>NAVER Cloud</td>
-              <td class="sc dim">—</td>
-              <td class="sc dim">—</td>
-              <td class="sc dim">—</td>
-              <td class="sc" style="--pct:1%">1</td>
-              <td class="sc" style="--pct:31%">31</td>
-              <td class="sc" style="--pct:50%">50</td>
+              <td><b style="color:var(--accent)">NAVER</b></td>
+              <td>CLOVA AiCall</td>
+              <td>일반형 폼 (회사명·이름·이메일·전화·내용)</td>
+              <td><b style="color:var(--accent)">운영 문서에서 통화 건수·채널 수·서비스 이용 시간 상세 공개</b> → 고객-facing 번역 필요</td>
             </tr>
           </tbody>
         </table>
-        <p class="p2-comp-note mono">// <span style="display:inline-block;width:10px;height:9px;background:#E8E6DE;border-radius:1px;vertical-align:middle;margin-right:3px;"></span>회색 = 공개 자료 없음 · 그룹 내 최고값 대비 정규화 · KT 월 1,500만 콜 · LGU+ 처리시간 7%↓ · SKT 구독형 3개월 10개+ · <b style="color:var(--accent)">NAVER 품질관리 50</b> → P4 차별화 기준</p>
+        <p class="p2-comp-note mono">// 출처: 각 벤더 공식 제품 페이지·상담 신청 폼·개인정보처리방침 (2025) · KT 월 1,500만 콜 · LGU+ 처리시간 7%↓ · NAVER 불완전판매 모니터링 공식 언급</p>
       </div>
     </div>
   </div>
 
   <footer class="page-foot">
     <div class="stack">
-      <span>method = label → scenario → score → benchmark</span>
+      <span>method = label → score → benchmark surface → action</span>
     </div>
     <div>P. 02 / 04</div>
   </footer>
@@ -442,9 +434,10 @@
       </table>
 
       <p class="p3-note mono">
-        // competitor note<br>
-        <b style="color:var(--ink)">KT</b> [규모·효과] 월 1,500만 콜 · <b style="color:var(--ink)">LGU+</b> [품질·상담지원] 처리시간 7%↓ · <b style="color:var(--ink)">SKT</b> [도입편의] 3개월 10개+<br>
-        → <b style="color:var(--accent)">NAVER</b> [운영구성·관측성] keyword session · 불완전판매 모니터링 → P4 실행안으로 연결
+        // operation note<br>
+        분석 결과는 P4 3개 액션의 우선순위 근거로 직결됩니다.<br>
+        → 업무처리(33.1%) : 진단형 폼에서 기능 요구사항 사전 파악 · 장애·불만(priority 73+) : 고위험 QA 우선 모니터링 대상<br>
+        → NAVER 공개 통계 단위(통화 건수·채널 수) : 월간 KPI + 계약 검토 패키지의 실측 기준
       </p>
     </aside>
   </div>
@@ -470,7 +463,7 @@
   <div class="p4-hd">
     <p class="eyebrow">04 · Action</p>
     <h2 class="section-title">단계별 <span class="accent">운영 실행안</span></h2>
-    <p class="section-sub">// 장애·불만 priority 73+ × KT·LGU+ 운영 성과 공개 패턴 → 3단계 실행 기준으로</p>
+    <p class="section-sub">// 데이터 분석 결과 + NAVER 공개 운영 구조 + 경쟁사 표면 비교 → CS운영·계약정산·품질관리 3개 액션</p>
   </div>
 
   <div class="p4-cards">
@@ -478,17 +471,18 @@
       <header class="p4-card-head">
         <span class="p4-step mono">01</span>
         <div>
-          <p class="p4-stage mono">도입 전 · PRE-ONBOARDING</p>
-          <h3 class="p4-title">문의 접수 단계<br>구조화</h3>
+          <p class="p4-stage mono">CS 운영 · CS OPERATION</p>
+          <h3 class="p4-title">진단형<br>상담 진입 폼</h3>
         </div>
       </header>
 
       <section class="p4-block">
         <p class="p4-block-label mono">기준 · CRITERIA</p>
         <ul>
-          <li>상담사 수 / 월 콜 볼륨</li>
-          <li>주요 문의 유형 분포 사전 파악</li>
-          <li>기존 솔루션 / 희망 기능</li>
+          <li>도입 방식 (Inbound / Outbound / 혼합)</li>
+          <li>상담사 수 / 채널 수 / 예상 월 콜 볼륨</li>
+          <li>기존 IVR · CRM · 챗봇 환경</li>
+          <li>희망 기능 (콜봇 / 상담지원 / 품질관리)</li>
         </ul>
       </section>
 
@@ -496,8 +490,8 @@
         <p class="p4-block-label mono">산출물 · OUTPUT</p>
         <ul>
           <li>도입 유형 분류표</li>
+          <li>기능 요구사항 초안</li>
           <li>계약·과금 검토 항목</li>
-          <li>유관부서 커뮤니케이션 기준</li>
         </ul>
       </section>
     </article>
@@ -506,26 +500,26 @@
       <header class="p4-card-head">
         <span class="p4-step mono">02</span>
         <div>
-          <p class="p4-stage mono">운영 중 · IN-OPERATION</p>
-          <h3 class="p4-title">CS 워크플로우<br>표준화</h3>
+          <p class="p4-stage mono">계약·정산 · CONTRACT</p>
+          <h3 class="p4-title">월간 KPI<br>계약 검토 패키지</h3>
         </div>
       </header>
 
       <section class="p4-block">
         <p class="p4-block-label mono">기준 · CRITERIA</p>
         <ul>
-          <li>업무처리(33%) → Main Scenario</li>
-          <li>장애·불만(8%, priority 73+) → Auto QA 우선</li>
-          <li>FAQ → Global Scenario 자동화</li>
+          <li>통화 건수 / 통화 시간 / 상담원 연결률</li>
+          <li>채널 증감 추이 → 요금제 조정 기준</li>
+          <li><b>keyword session</b> 현황 → 품질 연동</li>
         </ul>
       </section>
 
       <section class="p4-block p4-block--out">
         <p class="p4-block-label mono">산출물 · OUTPUT</p>
         <ul>
-          <li>유형별 Handoff 기준표</li>
-          <li>Auto QA 적용 대상 선정</li>
-          <li>Repair 개선 후보 목록</li>
+          <li>고객사별 월간 KPI 리포트</li>
+          <li>채널·요금제 조정 검토표</li>
+          <li>계약·정산 이상 여부 확인</li>
         </ul>
       </section>
     </article>
@@ -534,26 +528,26 @@
       <header class="p4-card-head">
         <span class="p4-step mono">03</span>
         <div>
-          <p class="p4-stage mono">월간 관리 · MONTHLY</p>
-          <h3 class="p4-title">고객사별<br>KPI 리포트</h3>
+          <p class="p4-stage mono">품질관리 · QUALITY</p>
+          <h3 class="p4-title">고위험 문의<br>우선 QA 운영</h3>
         </div>
       </header>
 
       <section class="p4-block">
         <p class="p4-block-label mono">기준 · CRITERIA</p>
         <ul>
-          <li>통화 건수 / 상담원 연결률 · 자동화율</li>
-          <li><b>keyword session · active session</b> 실시간 관측</li>
-          <li><b>불완전판매 모니터링</b> · Inbound/Outbound 캠페인 현황</li>
+          <li>장애·불만 (priority 73+) / 규제 민감 문의</li>
+          <li>Call Record 녹취 검색 / <b>keyword session</b> 태깅</li>
+          <li><b>불완전판매 모니터링</b> 기준 적용</li>
         </ul>
       </section>
 
       <section class="p4-block p4-block--out">
         <p class="p4-block-label mono">산출물 · OUTPUT</p>
         <ul>
-          <li>고객사별 월간 KPI 리포트</li>
-          <li>계약·정산 검토</li>
-          <li>KT·LGU+·SKT 공개 KPI 정기 갱신</li>
+          <li>고위험 문의 품질 이슈 태깅</li>
+          <li>월간 품질 이슈 리포트</li>
+          <li>유관부서 공유 및 개선 피드백</li>
         </ul>
       </section>
     </article>
