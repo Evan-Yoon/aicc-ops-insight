@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>CLOVA AiCall 운영 분석 포트폴리오</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f3efe7;
+    --paper: #faf7f1;
+    --ink: #1a1815;
+    --ink-2: #3a352e;
+    --ink-3: #6c655a;
+    --ink-4: #98907f;
+    --rule: #d8d1bf;
+    --rule-soft: #e7e0cf;
+    --warn: oklch(0.58 0.135 38);
+    --warn-soft: oklch(0.93 0.04 38);
+    --auto: oklch(0.55 0.10 115);
+    --auto-soft: oklch(0.93 0.05 115);
+    --neutral-a: #cfc7b5;
+    --neutral-b: #b9b0a0;
+    --neutral-c: #a39a8a;
+    --naver: oklch(0.40 0.09 175);
+    --naver-soft: oklch(0.94 0.025 175);
+    --sans: "Pretendard", "Noto Sans KR", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --mono: "IBM Plex Mono", "SFMono-Regular", Menlo, monospace;
+    --serif: "IBM Plex Serif", Georgia, serif;
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    font-family: var(--sans);
+    color: var(--ink);
+    word-break: keep-all;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    padding: 40px 0 60px;
+  }
+
+  .page {
+    width: 794px;
+    height: 1123px;
+    background: var(--paper);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.04), 0 24px 48px -28px rgba(40, 30, 10, 0.18);
+    padding: 48px 56px 36px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ---------- Chrome / margins ---------- */
+  .chrome-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 12px;
+    margin-bottom: 22px;
+  }
+  .chrome-top .doc {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+  .chrome-top .doc strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .chrome-top .meta {
+    text-align: right;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+  .chrome-top .meta .pgnum {
+    font-size: 12px;
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .chapter-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .chapter-tag::before {
+    content: "";
+    width: 18px;
+    height: 1px;
+    background: var(--ink);
+  }
+
+  .chrome-bottom {
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.10em;
+    color: var(--ink-4);
+    text-transform: uppercase;
+  }
+
+  /* ---------- Type ---------- */
+  h1, h2, h3, h4, p { margin: 0; }
+
+  .lede {
+    font-family: var(--serif);
+    font-size: 30px;
+    line-height: 1.32;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .lede em {
+    font-style: italic;
+    color: var(--warn);
+  }
+  .lede .mark {
+    background: linear-gradient(180deg, transparent 60%, oklch(0.93 0.08 90) 60%);
+    padding: 0 2px;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 14px;
+  }
+
+  .h-section {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+  .h-section .ko {
+    font-weight: 700;
+  }
+  .h-section .en {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-3);
+    font-weight: 500;
+    letter-spacing: 0.10em;
+    margin-left: 6px;
+    text-transform: uppercase;
+  }
+
+  .mono { font-family: var(--mono); }
+  .small { font-size: 11.5px; color: var(--ink-2); line-height: 1.55; }
+  .micro { font-size: 10.5px; color: var(--ink-3); font-family: var(--mono); letter-spacing: 0.04em; }
+
+  /* ====================================================
+     PAGE 1 — INTRO
+  ==================================================== */
+
+  .p1-hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-top: 4px;
+  }
+  .p1-lede {
+    font-family: var(--serif);
+    font-size: 33px;
+    line-height: 1.4;
+    letter-spacing: -0.012em;
+    color: var(--ink);
+    font-weight: 500;
+    text-wrap: balance;
+  }
+  .p1-lede .h1 {
+    display: block;
+  }
+  .p1-lede .h2 {
+    display: block;
+  }
+  .p1-lede .em-warn {
+    color: var(--warn);
+    font-style: italic;
+    font-weight: 500;
+  }
+  .p1-lede .em-auto {
+    color: var(--auto);
+    font-style: italic;
+    font-weight: 500;
+  }
+  .p1-lede .h3 {
+    display: block;
+    margin-top: 14px;
+    color: var(--ink-2);
+    font-size: 20px;
+    line-height: 1.55;
+    font-style: italic;
+  }
+
+  .p1-meta {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 18px 28px;
+    margin-top: 8px;
+    padding: 26px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .p1-meta dt {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-3);
+    padding-top: 3px;
+  }
+  .p1-meta dd {
+    margin: 0;
+    font-size: 14.5px;
+    color: var(--ink);
+    line-height: 1.55;
+  }
+  .p1-meta dd .note {
+    color: var(--ink-3);
+    font-size: 13px;
+    margin-left: 6px;
+  }
+
+  .p1-kpis {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 4px;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+  }
+  .kpi {
+    padding: 38px 14px 32px;
+    border-right: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .kpi:last-child { border-right: none; }
+  .kpi .num {
+    font-family: var(--mono);
+    font-size: 46px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .kpi .label {
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.4;
+  }
+  .kpi .sub {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.10em;
+    margin-top: 2px;
+  }
+  .kpi.accent .num { color: var(--warn); }
+
+  .p1-keywords {
+    margin-top: 12px;
+  }
+  .p1-keywords .badges {
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .badge {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    background: transparent;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    padding: 8px 14px 9px;
+  }
+  .badge.solid {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+  .badge.warn {
+    border-color: var(--warn);
+    color: var(--warn);
+  }
+  .badge.auto {
+    border-color: var(--auto);
+    color: var(--auto);
+  }
+
+  .p1-thesis {
+    margin-top: 12px;
+    padding: 32px 28px;
+    background: oklch(0.96 0.012 90);
+    border: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 24px;
+  }
+  .p1-thesis .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink-3);
+    border-top: 2px solid var(--ink);
+    padding-top: 8px;
+  }
+  .p1-thesis .body {
+    font-size: 13.5px;
+    color: var(--ink-2);
+    line-height: 1.65;
+  }
+  .p1-thesis .body strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* ====================================================
+     PAGE 2 — DATA ANALYSIS
+  ==================================================== */
+
+  .p2-headline {
+    font-family: var(--serif);
+    font-size: 27px;
+    line-height: 1.45;
+    color: var(--ink);
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    max-width: 700px;
+    text-wrap: balance;
+  }
+  .p2-headline em {
+    font-style: italic;
+    color: var(--warn);
+  }
+  .p2-headline em.auto {
+    color: var(--auto);
+  }
+
+  .chart-block {
+    margin-top: 36px;
+  }
+  .chart-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 6px;
+    margin-bottom: 14px;
+  }
+  .chart-head .num {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--ink-3);
+    text-transform: uppercase;
+  }
+  .chart-head .desc {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .stacked-legend {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px 14px;
+    margin-top: 14px;
+  }
+  .stacked-legend .item {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    font-size: 12px;
+    color: var(--ink-2);
+  }
+  .stacked-legend .swatch {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+  .stacked-legend .name {
+    flex: 1;
+    line-height: 1.4;
+  }
+  .stacked-legend .pct {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .takeaway {
+    margin-top: 26px;
+    padding: 24px 26px;
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 22px;
+  }
+  .takeaway .lab {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .takeaway .body {
+    font-size: 13.5px;
+    color: var(--ink);
+    line-height: 1.65;
+  }
+  .takeaway .body .arrow {
+    display: block;
+    margin-top: 10px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-2);
+  }
+  .takeaway .body .pin-warn {
+    color: var(--warn);
+    font-weight: 600;
+  }
+  .takeaway .body .pin-auto {
+    color: var(--auto);
+    font-weight: 600;
+  }
+
+  .formula {
+    margin-top: 18px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-3);
+    letter-spacing: 0.02em;
+  }
+
+  /* ====================================================
+     PAGE 3 — COMPETITOR
+  ==================================================== */
+
+  .p3-headline {
+    font-family: var(--serif);
+    font-size: 26px;
+    line-height: 1.45;
+    color: var(--ink);
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    max-width: 700px;
+    text-wrap: balance;
+  }
+  .p3-headline em {
+    font-style: italic;
+    color: var(--naver);
+  }
+
+  .ctable {
+    margin-top: 22px;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+    table-layout: fixed;
+  }
+  .ctable thead th {
+    text-align: left;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.10em;
+    color: var(--ink-3);
+    font-weight: 500;
+    border-bottom: 1.5px solid var(--ink);
+    padding: 8px 10px 10px 10px;
+    vertical-align: bottom;
+  }
+  .ctable tbody td {
+    vertical-align: top;
+    padding: 26px 10px;
+    border-bottom: 1px solid var(--rule);
+    line-height: 1.55;
+    color: var(--ink-2);
+  }
+  .ctable tbody tr:last-child td { border-bottom: 1.5px solid var(--ink); }
+
+  .ctable td.vendor {
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 13.5px;
+  }
+  .ctable td.product {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+  }
+
+  .ctable tr.naver-row td {
+    background: var(--naver-soft);
+    color: var(--ink);
+    font-weight: 500;
+    border-bottom: 1.5px solid var(--naver);
+    border-top: 1.5px solid var(--naver);
+  }
+  .ctable tr.naver-row td.vendor {
+    color: var(--naver);
+    font-weight: 800;
+  }
+  .ctable tr.naver-row td.product {
+    color: var(--naver);
+  }
+
+  .ctable col.c1 { width: 11%; }
+  .ctable col.c2 { width: 17%; }
+  .ctable col.c3 { width: 25%; }
+  .ctable col.c4 { width: 24%; }
+  .ctable col.c5 { width: 23%; }
+
+  .p3-summary {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .sum-card {
+    padding: 26px 24px;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+  }
+  .sum-card .lab {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink-3);
+    margin-bottom: 10px;
+  }
+  .sum-card.naver { border-left: 3px solid var(--naver); }
+  .sum-card.naver .lab { color: var(--naver); }
+  .sum-card.comp { border-left: 3px solid var(--ink); }
+  .sum-card .body {
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  /* ====================================================
+     PAGE 4 — ACTION PLAN
+  ==================================================== */
+
+  .p4-headline {
+    font-family: var(--serif);
+    font-size: 24px;
+    line-height: 1.45;
+    color: var(--ink);
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    max-width: 640px;
+    text-wrap: balance;
+  }
+  .p4-headline em {
+    font-style: italic;
+    color: var(--auto);
+  }
+
+  .actions {
+    margin-top: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .action {
+    border: 1px solid var(--ink);
+    background: var(--paper);
+    padding: 26px 26px 26px 28px;
+    display: grid;
+    grid-template-columns: 54px 1fr;
+    gap: 18px;
+    position: relative;
+  }
+  .action .letter {
+    font-family: var(--serif);
+    font-size: 52px;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 0.9;
+    padding-top: 4px;
+  }
+  .action .content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .action h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+  }
+  .action .row {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 14px;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--ink-2);
+  }
+  .action .row .k {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-3);
+    padding-top: 3px;
+  }
+  .action .row .v strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .action ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 20px;
+  }
+  .action ul li {
+    font-size: 12.5px;
+    color: var(--ink-2);
+    line-height: 1.55;
+    padding-left: 14px;
+    position: relative;
+  }
+  .action ul li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--ink-4);
+    font-family: var(--mono);
+  }
+  .action.A { border-left: 3px solid var(--ink); }
+  .action.B { border-left: 3px solid var(--ink); }
+  .action.C { border-left: 3px solid var(--warn); }
+  .action.C .letter { color: var(--warn); }
+
+  .closer {
+    margin-top: 22px;
+    padding: 26px 28px;
+    background: var(--ink);
+    color: var(--paper);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .closer .mark {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    flex-shrink: 0;
+    border-right: 1px solid rgba(255,255,255,0.2);
+    padding-right: 22px;
+  }
+  .closer .text {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 15.5px;
+    line-height: 1.55;
+  }
+
+  /* ---------- Print ---------- */
+  @page { size: A4; margin: 0; }
+  @media print {
+    body { background: white; padding: 0; gap: 0; display: block; }
+    .page {
+      box-shadow: none;
+      page-break-after: always;
+      margin: 0;
+    }
+    .page:last-of-type { page-break-after: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     PAGE 1 — INTRODUCTION
+============================================================ -->
+<section class="page" data-screen-label="01 Intro">
+  <div class="chrome-top">
+    <div class="doc">
+      <strong>CLOVA AiCall — 운영 분석 포트폴리오</strong>
+    </div>
+    <div class="meta">
+      <div class="pgnum">01 / 04</div>
+      <div>Introduction</div>
+    </div>
+  </div>
+
+  <div class="chapter-tag">Ch. 01 · Introduction</div>
+
+  <div class="p1-hero">
+    <div class="p1-lede">
+      NAVER 공식 문서의 <span class="mark">운영 구조가 강한 쪽</span>과, 경쟁사 대비 <em class="em-warn">덜 드러나는 상담 진입·성과 메시지</em>를 공개 데이터로 짚는다.
+    </div>
+
+    <dl class="p1-meta">
+      <dt>Subject</dt>
+      <dd>CLOVA AiCall <span class="note">— NAVER Cloud AI Contact Center 솔루션</span></dd>
+      <dt>Dataset</dt>
+      <dd>고객지원 문의 공개 데이터 <span class="mono">n = 29,872</span> <span class="note">+ 경쟁사 공식 제품 페이지 및 도입 상담 폼</span></dd>
+      <dt>Lens</dt>
+      <dd>문의 유형별 비중 분석 · 운영 우선순위 점수화 · 경쟁사 공개 정보 비교</dd>
+    </dl>
+
+    <div class="p1-kpis">
+      <div class="kpi">
+        <div class="num">29,872</div>
+        <div class="label">분석 문의 건수</div>
+      </div>
+      <div class="kpi">
+        <div class="num">8</div>
+        <div class="label">분류한 문의 유형</div>
+      </div>
+      <div class="kpi">
+        <div class="num">5</div>
+        <div class="label">비교한 AICC 벤더</div>
+      </div>
+      <div class="kpi accent">
+        <div class="num">3</div>
+        <div class="label">도출한 개선 실행안</div>
+      </div>
+    </div>
+
+    <div class="p1-keywords">
+      <div class="h-section"><span class="ko">NAVER 운영 문서에서 확인된 강점 키워드</span></div>
+      <div class="badges">
+        <span class="badge solid">Contact Center</span>
+        <span class="badge solid">Agent</span>
+        <span class="badge solid">Channel</span>
+        <span class="badge">Inbound · Outbound</span>
+        <span class="badge">통화 건수</span>
+        <span class="badge warn">불완전판매 모니터링</span>
+      </div>
+    </div>
+
+    <div class="p1-thesis">
+      <div class="label">Thesis</div>
+      <div class="body">
+        NAVER 공식 문서는 <strong>운영 단위(Contact Center → Agent → Channel)</strong>, <strong>불완전판매 모니터링</strong>, <strong>통화·채널·이용 시간 통계</strong>를 경쟁사 중 가장 구체적으로 공개한다. 그런데 그 내용이 고객이 처음 보는 제품 페이지 — <strong>상담 신청, 가격 안내, 도입 성과</strong> — 에서는 보이지 않는다.
+      </div>
+    </div>
+  </div>
+
+  <div class="chrome-bottom">
+    <div>FIG. 01 · INTRO</div>
+    <div>2026</div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     PAGE 2 — DATA ANALYSIS
+============================================================ -->
+<section class="page" data-screen-label="02 Data Analysis">
+  <div class="chrome-top">
+    <div class="doc">
+      <strong>CLOVA AiCall — 운영 분석 포트폴리오</strong>
+    </div>
+    <div class="meta">
+      <div class="pgnum">02 / 04</div>
+      <div>Data Analysis</div>
+    </div>
+  </div>
+
+  <div class="chapter-tag">Ch. 02 · Data Analysis</div>
+
+  <div class="p2-headline">
+    문의량이 많은 유형과 <em>운영 위험이 큰 유형</em>은 다르다 — <em class="auto">29,872건 분류</em>에서 확인한다.
+  </div>
+
+  <!-- Chart 1 — Stacked Bar -->
+  <div class="chart-block">
+    <div class="chart-head">
+      <div class="num">FIG. 2.1 · STACKED DISTRIBUTION</div>
+      <div class="desc">n = 29,872 · 100%</div>
+    </div>
+
+    <svg viewBox="0 -14 674 110" width="100%" height="110" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+      <!-- bar segments (widths sum to 674): 33.13 / 25.00 / 18.31 / 7.00 / 4.73 / 4.63 / 3.85 / 3.35 -->
+      <!-- x: 0, 223.30, 391.80, 515.21, 562.39, 594.27, 625.48, 651.43; total 674 -->
+      <g>
+        <rect x="0"      y="14" width="223.30" height="42" fill="oklch(0.55 0.10 115)"/>
+        <rect x="223.30" y="14" width="168.50" height="42" fill="#bfb6a3"/>
+        <rect x="391.80" y="14" width="123.41" height="42" fill="#a89e89"/>
+        <rect x="515.21" y="14" width="47.18"  height="42" fill="#8d8472"/>
+        <rect x="562.39" y="14" width="31.88"  height="42" fill="oklch(0.58 0.135 38)"/>
+        <rect x="594.27" y="14" width="31.21"  height="42" fill="oklch(0.65 0.13 115)"/>
+        <rect x="625.48" y="14" width="25.95"  height="42" fill="#736b5b"/>
+        <rect x="651.43" y="14" width="22.57"  height="42" fill="oklch(0.50 0.14 32)"/>
+      </g>
+
+      <!-- inline labels: percentage in segment if wide enough -->
+      <g font-family="IBM Plex Mono, monospace" font-size="12" fill="#1a1815">
+        <text x="111.65" y="42" text-anchor="middle" font-weight="600" fill="#faf7f1">33.13%</text>
+
+        <text x="307.55" y="42" text-anchor="middle" font-weight="600">25.00%</text>
+
+        <text x="453.51" y="42" text-anchor="middle" font-weight="600">18.31%</text>
+
+        <text x="538.80" y="42" text-anchor="middle" font-weight="600" font-size="10.5" fill="#faf7f1">7.00%</text>
+      </g>
+
+      <!-- tick markers above/below for the small segments with leader lines -->
+      <g font-family="IBM Plex Mono, monospace" font-size="10" fill="#3a352e">
+        <!-- 장애·오류 4.73% -->
+        <line x1="578.33" y1="14" x2="578.33" y2="4" stroke="oklch(0.58 0.135 38)" stroke-width="1"/>
+        <text x="578.33" y="-2" text-anchor="middle" fill="oklch(0.58 0.135 38)" font-weight="600">4.73</text>
+
+        <!-- FAQ 4.63% -->
+        <line x1="609.88" y1="56" x2="609.88" y2="68" stroke="oklch(0.55 0.10 115)" stroke-width="1"/>
+        <text x="609.88" y="79" text-anchor="middle" fill="oklch(0.55 0.10 115)" font-weight="600">4.63</text>
+
+        <!-- 기타 3.85% -->
+        <line x1="638.46" y1="14" x2="638.46" y2="4" stroke="#736b5b" stroke-width="1"/>
+        <text x="638.46" y="-2" text-anchor="middle" fill="#3a352e" font-weight="600">3.85</text>
+
+        <!-- 불만·클레임 3.35% -->
+        <line x1="662.72" y1="56" x2="662.72" y2="68" stroke="oklch(0.50 0.14 32)" stroke-width="1"/>
+        <text x="662.72" y="79" text-anchor="middle" fill="oklch(0.50 0.14 32)" font-weight="600">3.35</text>
+      </g>
+    </svg>
+
+    <div class="stacked-legend">
+      <div class="item"><span class="swatch" style="background:oklch(0.55 0.10 115);"></span><span class="name">업무 처리 요청</span><span class="pct">9,896</span></div>
+      <div class="item"><span class="swatch" style="background:#bfb6a3;"></span><span class="name">결제·청구</span><span class="pct">7,468</span></div>
+      <div class="item"><span class="swatch" style="background:#a89e89;"></span><span class="name">계정·인증</span><span class="pct">5,469</span></div>
+      <div class="item"><span class="swatch" style="background:#8d8472;"></span><span class="name">상담원 연결</span><span class="pct">2,092</span></div>
+      <div class="item"><span class="swatch" style="background:oklch(0.58 0.135 38);"></span><span class="name">장애·오류</span><span class="pct">1,412</span></div>
+      <div class="item"><span class="swatch" style="background:oklch(0.65 0.13 115);"></span><span class="name">FAQ·단순 안내</span><span class="pct">1,384</span></div>
+      <div class="item"><span class="swatch" style="background:#736b5b;"></span><span class="name">기타</span><span class="pct">1,151</span></div>
+      <div class="item"><span class="swatch" style="background:oklch(0.50 0.14 32);"></span><span class="name">불만·클레임</span><span class="pct">1,000</span></div>
+    </div>
+  </div>
+
+  <!-- Chart 2 — Scatter -->
+  <div class="chart-block" style="margin-top: 24px;">
+    <div class="chart-head">
+      <div class="num">FIG. 2.2 · VOLUME × PRIORITY SCATTER</div>
+      <div class="desc">x: 비중 %  ·  y: 운영 우선순위  ·  bubble: 건수</div>
+    </div>
+
+    <!--
+      Plot area:
+      viewBox 0 0 674 320
+      Inner plot: x [60, 650], y [20, 280]
+      X axis: 0% .. 36%
+      Y axis: 0 .. 100 (priority)
+      x_to_px(v) = 60 + (v / 36) * 590
+      y_to_px(v) = 280 - (v / 100) * 260
+      bubble r: count → radius. min=1000→7, max=9896→26, scale linearly by sqrt
+    -->
+    <svg viewBox="0 0 674 320" width="100%" height="320" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+      <defs>
+        <pattern id="riskhatch" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="6" stroke="oklch(0.58 0.135 38)" stroke-width="0.8" opacity="0.18"/>
+        </pattern>
+      </defs>
+
+      <!-- RISK ZONE: top-left (low volume <12%, high priority >65) -->
+      <!-- x: 60 → x_to_px(12)= 60 + 12/36*590 = 60+196.67=256.67; y: 20 → y_to_px(65)= 280-169=111  -->
+      <rect x="60" y="20" width="196.67" height="91" fill="url(#riskhatch)"/>
+      <rect x="60" y="20" width="196.67" height="91" fill="oklch(0.58 0.135 38)" opacity="0.04"/>
+      <text x="250" y="34" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="9" font-weight="600" letter-spacing="0.18em" fill="oklch(0.50 0.13 32)">RISK ZONE · 低 VOL × 高 PRIORITY</text>
+      <text x="250" y="48" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="9" font-weight="600" letter-spacing="0.14em" fill="oklch(0.50 0.13 32)">QUALITY-FIRST · 품질관리 우선군</text>
+
+      <!-- Priority 65 dashed line -->
+      <line x1="60" y1="111" x2="650" y2="111" stroke="#1a1815" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.55"/>
+      <text x="654" y="114" font-family="IBM Plex Mono, monospace" font-size="9" fill="#3a352e">P=65</text>
+
+      <!-- Axes -->
+      <line x1="60" y1="280" x2="650" y2="280" stroke="#1a1815" stroke-width="1"/>
+      <line x1="60" y1="20"  x2="60"  y2="280" stroke="#1a1815" stroke-width="1"/>
+
+      <!-- X ticks: 0, 10, 20, 30 -->
+      <g font-family="IBM Plex Mono, monospace" font-size="9" fill="#3a352e">
+        <g>
+          <line x1="60"     y1="280" x2="60"     y2="284" stroke="#1a1815"/>
+          <text x="60"     y="296" text-anchor="middle">0%</text>
+        </g>
+        <g>
+          <line x1="223.89" y1="280" x2="223.89" y2="284" stroke="#1a1815"/>
+          <text x="223.89" y="296" text-anchor="middle">10%</text>
+        </g>
+        <g>
+          <line x1="387.78" y1="280" x2="387.78" y2="284" stroke="#1a1815"/>
+          <text x="387.78" y="296" text-anchor="middle">20%</text>
+        </g>
+        <g>
+          <line x1="551.67" y1="280" x2="551.67" y2="284" stroke="#1a1815"/>
+          <text x="551.67" y="296" text-anchor="middle">30%</text>
+        </g>
+      </g>
+
+      <!-- Y ticks: 0,25,50,75,100 -->
+      <g font-family="IBM Plex Mono, monospace" font-size="9" fill="#3a352e">
+        <g>
+          <line x1="56" y1="280" x2="60" y2="280" stroke="#1a1815"/>
+          <text x="52" y="283" text-anchor="end">0</text>
+        </g>
+        <g>
+          <line x1="56" y1="215" x2="60" y2="215" stroke="#1a1815"/>
+          <text x="52" y="218" text-anchor="end">25</text>
+        </g>
+        <g>
+          <line x1="56" y1="150" x2="60" y2="150" stroke="#1a1815"/>
+          <text x="52" y="153" text-anchor="end">50</text>
+        </g>
+        <g>
+          <line x1="56" y1="85" x2="60" y2="85" stroke="#1a1815"/>
+          <text x="52" y="88" text-anchor="end">75</text>
+        </g>
+        <g>
+          <line x1="56" y1="20" x2="60" y2="20" stroke="#1a1815"/>
+          <text x="52" y="23" text-anchor="end">100</text>
+        </g>
+      </g>
+
+      <!-- Axis labels -->
+      <text x="650" y="313" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="9" fill="#3a352e" letter-spacing="0.1em">→ VOLUME %</text>
+      <text x="60" y="14" text-anchor="start" font-family="IBM Plex Mono, monospace" font-size="9" fill="#3a352e" letter-spacing="0.1em">↑ PRIORITY</text>
+
+      <!-- Bubbles -->
+      <!--
+        Coords (data):
+        업무 처리 요청  33.13  58.0  9896  AUTO
+        결제·청구       25.00  60.0  7468  NEUTRAL
+        계정·인증       18.31  64.2  5469  NEUTRAL
+        상담원 연결      7.00  60.0  2092  NEUTRAL
+        장애·오류        4.73  73.2  1412  RISK
+        FAQ·단순 안내    4.63  38.5  1384  AUTO
+        기타             3.85  48.5  1151  NEUTRAL
+        불만·클레임      3.35  73.0  1000  RISK
+
+        x_to_px:
+          33.13 → 60 + 33.13/36*590 = 60+542.85=602.85
+          25.00 → 60 + 25/36*590 = 60+409.72=469.72
+          18.31 → 60 + 18.31/36*590 = 60+300.08=360.08
+          7.00  → 60 + 7/36*590 = 60+114.72=174.72
+          4.73  → 60 + 4.73/36*590 = 60+77.51=137.51
+          4.63  → 60 + 4.63/36*590 = 60+75.87=135.87
+          3.85  → 60 + 3.85/36*590 = 60+63.10=123.10
+          3.35  → 60 + 3.35/36*590 = 60+54.90=114.90
+
+        y_to_px:
+          58.0 → 280-150.8=129.2
+          60.0 → 280-156=124
+          64.2 → 280-166.92=113.08
+          60.0 → 124
+          73.2 → 280-190.32=89.68
+          38.5 → 280-100.1=179.9
+          48.5 → 280-126.1=153.9
+          73.0 → 280-189.8=90.20
+
+        r: r = 6 + sqrt(count/100) ~~ tuned manually for nice scale
+          9896 → 22
+          7468 → 19
+          5469 → 17
+          2092 → 12
+          1412 → 10
+          1384 → 10
+          1151 → 9
+          1000 → 8
+      -->
+
+      <!-- NEUTRAL bubbles -->
+      <g fill="#a89e89" fill-opacity="0.55" stroke="#736b5b" stroke-width="0.8">
+        <circle cx="469.72" cy="124" r="19"/>
+        <circle cx="360.08" cy="113.08" r="17"/>
+        <circle cx="174.72" cy="124" r="12"/>
+        <circle cx="123.10" cy="153.9" r="9"/>
+      </g>
+
+      <!-- AUTO bubbles -->
+      <g fill="oklch(0.55 0.10 115)" fill-opacity="0.55" stroke="oklch(0.40 0.09 115)" stroke-width="0.8">
+        <circle cx="602.85" cy="129.2" r="22"/>
+        <circle cx="135.87" cy="179.9" r="10"/>
+      </g>
+
+      <!-- RISK bubbles -->
+      <g fill="oklch(0.58 0.135 38)" fill-opacity="0.60" stroke="oklch(0.42 0.13 32)" stroke-width="0.9">
+        <circle cx="137.51" cy="89.68" r="10"/>
+        <circle cx="114.90" cy="90.20" r="8"/>
+      </g>
+
+      <!-- Labels -->
+      <g font-family="Pretendard, sans-serif" font-size="10.5" fill="#1a1815">
+        <!-- 업무 처리 요청 -->
+        <text x="602.85" y="98" text-anchor="middle" font-weight="600">업무 처리 요청</text>
+        <text x="602.85" y="167" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="oklch(0.40 0.09 115)">9,896 · P58.0</text>
+
+        <!-- 결제·청구 -->
+        <text x="469.72" y="100" text-anchor="middle" font-weight="600">결제·청구</text>
+        <text x="469.72" y="158" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#3a352e">7,468 · P60.0</text>
+
+        <!-- 계정·인증 -->
+        <text x="360.08" y="90" text-anchor="middle" font-weight="600">계정·인증</text>
+        <text x="360.08" y="142" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#3a352e">5,469 · P64.2</text>
+
+        <!-- 상담원 연결 -->
+        <text x="206" y="121" text-anchor="start" font-weight="600">상담원 연결</text>
+        <text x="206" y="133" text-anchor="start" font-family="IBM Plex Mono, monospace" font-size="9" fill="#3a352e">2,092 · P60.0</text>
+
+        <!-- 장애·오류 -->
+        <text x="152" y="86" text-anchor="start" font-weight="700" fill="oklch(0.50 0.13 32)">장애·오류</text>
+        <text x="152" y="98" text-anchor="start" font-family="IBM Plex Mono, monospace" font-size="9" fill="oklch(0.50 0.13 32)">1,412 · P73.2</text>
+
+        <!-- 불만·클레임 - placed above bubble, center-anchored, clears y-axis tick "75" -->
+        <text x="114.90" y="66" text-anchor="middle" font-weight="700" fill="oklch(0.50 0.13 32)">불만·클레임</text>
+        <text x="114.90" y="78" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="oklch(0.50 0.13 32)">1,000 · P73.0</text>
+
+        <!-- FAQ -->
+        <text x="155" y="183" text-anchor="start" font-weight="700" fill="oklch(0.40 0.09 115)">FAQ·단순 안내</text>
+        <text x="155" y="195" text-anchor="start" font-family="IBM Plex Mono, monospace" font-size="9" fill="oklch(0.40 0.09 115)">1,384 · P38.5</text>
+
+        <!-- 기타 -->
+        <text x="143" y="151" text-anchor="start" font-weight="500" fill="#3a352e">기타</text>
+        <text x="143" y="163" text-anchor="start" font-family="IBM Plex Mono, monospace" font-size="9" fill="#3a352e">1,151 · P48.5</text>
+      </g>
+
+      <!-- Group cluster annotations - automation cluster (bottom right) -->
+      <g font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="0.14em">
+        <!-- 자동화 우선군 - bottom right -->
+        <text x="640" y="259" text-anchor="end" fill="oklch(0.40 0.09 115)" font-weight="600">AUTOMATION-FIRST · 자동화 우선군 ↗</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="takeaway">
+    <div class="lab">Takeaway</div>
+    <div class="body">
+      많이 들어오는 문의와 리스크가 큰 문의는 <strong>다른 자리에 있다.</strong> 자동화 먼저 볼 것과 QA로 먼저 잡아야 할 것이 나뉜다.
+      <span class="arrow">→ <span class="pin-auto">자동화 우선</span> — FAQ (P90) · 업무처리 (P75) &nbsp;&nbsp;|&nbsp;&nbsp; <span class="pin-warn">QA 우선</span> — 장애·오류 (P73.2) · 불만·클레임 (P73.0)</span>
+    </div>
+  </div>
+
+  <div class="formula">
+    † priority = 0.35 × autoqa_need + 0.25 × handoff_need + 0.20 × repair_need + 0.20 × (100 − automation_fit)
+  </div>
+
+  <div class="chrome-bottom">
+    <div>FIG. 02 · DATA ANALYSIS</div>
+    <div>2026</div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     PAGE 3 — COMPETITOR ANALYSIS
+============================================================ -->
+<section class="page" data-screen-label="03 Competitor">
+  <div class="chrome-top">
+    <div class="doc">
+      <strong>CLOVA AiCall — 운영 분석 포트폴리오</strong>
+    </div>
+    <div class="meta">
+      <div class="pgnum">03 / 04</div>
+      <div>Competitor Analysis</div>
+    </div>
+  </div>
+
+  <div class="chapter-tag">Ch. 03 · Competitor Analysis</div>
+
+  <div class="p3-headline">
+    경쟁 4개사와 NAVER — <em>제품 페이지에서 고객에게 가장 먼저 내보이는 것</em>이 무엇인지 비교한다.
+  </div>
+
+  <table class="ctable">
+    <colgroup>
+      <col class="c1"><col class="c2"><col class="c3"><col class="c4"><col class="c5">
+    </colgroup>
+    <thead>
+      <tr>
+        <th>벤더 / Vendor</th>
+        <th>제품명 / Product</th>
+        <th>상담 진입 특징</th>
+        <th>가격 · 성과 공개</th>
+        <th>NAVER와의 차이</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="vendor">KT</td>
+        <td class="product">A'Cen Cloud</td>
+        <td>좌석수·IVR 환경·보이스봇 도입 여부를 컨설팅 체크포인트로 수집</td>
+        <td>구축비 없는 선택형 가격 구조 공개</td>
+        <td>제품 특화형 진단 폼</td>
+      </tr>
+      <tr>
+        <td class="vendor">LG U+</td>
+        <td class="product">AICC Cloud / BPO</td>
+        <td>상품별 가입상담 분리, 부서·직책·메모 수집</td>
+        <td>상담사당·bot당 단가 공개, 도입 프로세스 명시</td>
+        <td>상품별 가입상담 + 공개 단가</td>
+      </tr>
+      <tr>
+        <td class="vendor">SKT</td>
+        <td class="product">AI CCaaS</td>
+        <td>올인원 구독형 메시지<br>(Call Infra + 상담 앱 + AI 솔루션 + 전용회선 + BPO)</td>
+        <td>월정액 구독형, 도입 문의 성과 메시지</td>
+        <td>올인원 구독형 · 도입 성과 강조</td>
+      </tr>
+      <tr>
+        <td class="vendor">SK AX</td>
+        <td class="product">AICC</td>
+        <td>성명·연락처·업종·부서·직급·문의 내용을 상담 접수 단계에서 수집</td>
+        <td>상담요약·Hot 키워드·상담분석·KMS 전면 노출</td>
+        <td>품질관리 · 분석 메시지 완결성</td>
+      </tr>
+      <tr class="naver-row">
+        <td class="vendor">NAVER</td>
+        <td class="product">CLOVA AiCall</td>
+        <td>일반형 폼 (회사명 · 이름 · 이메일 · 전화 · 내용)</td>
+        <td>운영 문서에서 통화 건수 · 채널 수 · 서비스 이용 시간 상세 공개</td>
+        <td>운영 구조·불완전판매 모니터링이 강점 → <strong>상담 신청 페이지에는 아직 드러나지 않음</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="p3-summary">
+    <div class="sum-card comp">
+      <div class="lab">경쟁사가 강한 것</div>
+      <div class="body">상담 신청 단계부터 좌석 수·가격 구조·도입 성과를 앞세운다. <strong>구매 결정 전에 필요한 정보</strong>를 제품 페이지에서 먼저 준다.</div>
+    </div>
+    <div class="sum-card naver">
+      <div class="lab">NAVER가 강한 것</div>
+      <div class="body">운영 구조(Contact Center → Agent → Channel)의 명확성, <strong>불완전판매 모니터링</strong>, 통화·채널·이용 시간 통계의 상세함.</div>
+    </div>
+  </div>
+
+  <div class="micro" style="margin-top:22px; line-height:1.6;">
+    † 출처: 각 벤더 공식 제품 페이지 · 도입 상담 폼 (2026.05 기준 공개 정보 리서치)
+  </div>
+
+  <div class="chrome-bottom">
+    <div>FIG. 03 · COMPETITIVE SCAN</div>
+    <div>2026</div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     PAGE 4 — ACTION PLAN
+============================================================ -->
+<section class="page" data-screen-label="04 Action Plan">
+  <div class="chrome-top">
+    <div class="doc">
+      <strong>CLOVA AiCall — 운영 분석 포트폴리오</strong>
+    </div>
+    <div class="meta">
+      <div class="pgnum">04 / 04</div>
+      <div>Action Plan</div>
+    </div>
+  </div>
+
+  <div class="chapter-tag">Ch. 04 · Action Plan</div>
+
+  <div class="p4-headline">
+    앞 세 장에서 확인한 공백을 채우는 <em>운영 액션 세 가지.</em>
+  </div>
+
+  <div class="actions">
+
+    <!-- ACTION A -->
+    <div class="action A">
+      <div class="letter">A</div>
+      <div class="content">
+        <h3>CLOVA AiCall 전용 진단형 상담 신청 폼</h3>
+        <div class="row">
+          <div class="k">JD Link</div>
+          <div class="v">② <strong>CS 운영 현황 관리 및 이슈 기반 인사이트 도출</strong></div>
+        </div>
+        <div class="row">
+          <div class="k">Basis</div>
+          <div class="v">지금 NAVER 도입 문의 폼은 이름·이메일·연락처 중심의 일반형이다. KT는 같은 단계에서 이미 필요 좌석 수·콜 인프라·보이스봇 도입 여부를 확인한다.</div>
+        </div>
+        <div class="row">
+          <div class="k">Items</div>
+          <div class="v">
+            <ul>
+              <li>도입 방식 — Inbound · Outbound · 혼합</li>
+              <li>상담사 수 · 운영 채널 수 · 월 예상 통화량</li>
+              <li>기존 IVR · CRM · 챗봇 환경</li>
+              <li>희망 기능 — 콜봇 · 상담지원 · 품질관리 · 캠페인</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTION B -->
+    <div class="action B">
+      <div class="letter">B</div>
+      <div class="content">
+        <h3>월간 KPI 리포트 + 사용량 기반 계약 검토 패키지</h3>
+        <div class="row">
+          <div class="k">JD Link</div>
+          <div class="v">① <strong>AI PaaS 상품 계약 · 정산 운영 관리</strong></div>
+        </div>
+        <div class="row">
+          <div class="k">Basis</div>
+          <div class="v">NAVER 공식 문서에 통화 건수·통화 시간·채널 수·서비스 이용 시간이 이미 공개되어 있다.</div>
+        </div>
+        <div class="row">
+          <div class="k">Items</div>
+          <div class="v">
+            <ul>
+              <li>월간 리포트 — 통화 건수 · 시간 · 연결률 · 자동화율</li>
+              <li>진행 중 캠페인 · 채널 가동 현황</li>
+              <li>채널 증감 추이 → 요금제 조정 · 정산 이상 여부</li>
+              <li>위험 키워드 포함 통화 세션 → 품질 모니터링으로 연결</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTION C -->
+    <div class="action C">
+      <div class="letter">C</div>
+      <div class="content">
+        <h3>고위험 문의 우선 QA 운영</h3>
+        <div class="row">
+          <div class="k">JD Link</div>
+          <div class="v">⑤ <strong>솔루션별 품질 평가 및 퀄리티 매니지먼트</strong></div>
+        </div>
+        <div class="row">
+          <div class="k">Basis</div>
+          <div class="v">장애·오류(P73.2)와 불만·클레임(P73.0) — 건수는 적어도 우선순위 점수가 가장 높다. NAVER 공식 페이지가 직접 언급하는 불완전판매 모니터링과 바로 이어진다.</div>
+        </div>
+        <div class="row">
+          <div class="k">Items</div>
+          <div class="v">
+            <ul>
+              <li>집중 모니터링 대상 — 장애·오류 · 불만·클레임 · 규제 민감 문의</li>
+              <li>운영 기준 — 통화 녹취 검색 · 위험 키워드 세션 태깅</li>
+              <li>월간 품질 이슈 리포트</li>
+              <li>유관 부서 공유 및 주요 이슈 상위 보고 체계</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="closer">
+    <div class="mark">Closing</div>
+    <div class="text">
+      NAVER가 이미 공개한 운영 구조를, <span style="text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:4px;">고객 접점에서 바로 읽히는 형태로 패키징하는 것</span> — 그게 이 직무라고 봤습니다.
+    </div>
+  </div>
+
+  <div class="chrome-bottom">
+    <div>FIG. 04 · ACTION PLAN</div>
+    <div>END · 2026</div>
+  </div>
+</section>
+
+</body>
+</html>
