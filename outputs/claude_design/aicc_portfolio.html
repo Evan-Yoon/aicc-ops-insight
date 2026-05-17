@@ -284,8 +284,8 @@
 
         <!-- quadrant background: top-left (low volume, high priority) = risk zone -->
         <rect x="70" y="40" width="180" height="180" fill="#EFDFD2" opacity="0.55"/>
-        <text x="80" y="200" font-family="JetBrains Mono" font-size="10" fill="#8C4A2B" font-weight="600">RISK ZONE · 품질관리 우선</text>
-        <text x="80" y="214" font-family="JetBrains Mono" font-size="9" fill="#8C4A2B">low volume · high priority</text>
+        <text x="80" y="200" font-family="JetBrains Mono" font-size="11" fill="#8C4A2B" font-weight="600">RISK ZONE · 품질관리 우선</text>
+        <text x="80" y="214" font-family="JetBrains Mono" font-size="10" fill="#8C4A2B">low volume · high priority</text>
 
         <!-- grid lines -->
         <g stroke="#E8E6DD" stroke-width="1">
@@ -302,8 +302,8 @@
         </g>
 
         <!-- threshold line y = 65 priority -->
-        <line x1="70" y1="166" x2="720" y2="166" stroke="#8C4A2B" stroke-width="1" stroke-dasharray="4 4" opacity="0.7"/>
-        <text x="724" y="170" font-family="JetBrains Mono" font-size="9" fill="#8C4A2B">priority = 65</text>
+        <line x1="70" y1="166" x2="720" y2="166" stroke="#8C4A2B" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.85"/>
+        <text x="724" y="170" font-family="JetBrains Mono" font-size="10" fill="#8C4A2B">priority = 65</text>
 
         <!-- y-axis labels (0..80) -->
         <g font-family="JetBrains Mono" font-size="10" fill="#6E7269" text-anchor="end">
@@ -332,48 +332,48 @@
         <g>
           <circle cx="665.8" cy="139" r="11" fill="#2F5D4C" opacity="0.95"/>
           <text x="654" y="123" font-size="11" fill="#1E211E" font-weight="600" text-anchor="end" font-family="Pretendard">업무 처리 요청</text>
-          <text x="654" y="136" font-family="JetBrains Mono" font-size="9.5" fill="#3A3E39" text-anchor="end">33.1% · 58.0</text>
+          <text x="654" y="136" font-family="JetBrains Mono" font-size="10.5" fill="#3A3E39" text-anchor="end">33.1% · 58.0</text>
         </g>
         <!-- 결제·청구 25.00 / 60.0 → (520, 130) -->
         <g>
           <circle cx="520" cy="130" r="6" fill="#7AA493" opacity="0.9"/>
           <text x="528" y="127" font-size="10.5" fill="#3A3E39" font-family="Pretendard">결제·청구</text>
-          <text x="528" y="140" font-family="JetBrains Mono" font-size="9" fill="#6E7269">25.0% · 60.0</text>
+          <text x="528" y="140" font-family="JetBrains Mono" font-size="10" fill="#6E7269">25.0% · 60.0</text>
         </g>
         <!-- 계정·인증 18.31 / 64.2 → (400, 111) -->
         <g>
           <circle cx="400" cy="111" r="5.5" fill="#7AA493" opacity="0.9"/>
           <text x="392" y="108" font-size="10.5" fill="#3A3E39" font-family="Pretendard" text-anchor="end">계정·인증</text>
-          <text x="392" y="120" font-family="JetBrains Mono" font-size="9" fill="#6E7269" text-anchor="end">18.3% · 64.2</text>
+          <text x="392" y="120" font-family="JetBrains Mono" font-size="10" fill="#6E7269" text-anchor="end">18.3% · 64.2</text>
         </g>
         <!-- 상담원 연결 7.00 / 60.0 → (196, 130) -->
         <g>
           <circle cx="196" cy="130" r="5" fill="#A6BFB1" opacity="0.9"/>
           <line x1="205" y1="130" x2="268" y2="162" stroke="#A6BFB1" stroke-width="0.8" opacity="0.7"/>
           <text x="276" y="160" font-size="10.5" fill="#3A3E39" font-family="Pretendard">상담원 연결</text>
-          <text x="276" y="172" font-family="JetBrains Mono" font-size="9" fill="#6E7269">7.0% · 60.0</text>
+          <text x="276" y="172" font-family="JetBrains Mono" font-size="10" fill="#6E7269">7.0% · 60.0</text>
         </g>
         <!-- 장애·오류 4.7 / 73.2 — RISK (leader line out of risk zone) -->
         <g>
           <circle cx="154.6" cy="70.6" r="10" fill="#8C4A2B" opacity="0.95"/>
           <circle cx="154.6" cy="70.6" r="16" fill="none" stroke="#8C4A2B" stroke-width="1" opacity="0.4"/>
           <line x1="166" y1="70.6" x2="275" y2="58" stroke="#8C4A2B" stroke-width="0.8" opacity="0.7"/>
-          <text x="282" y="57" font-size="11.5" fill="#8C4A2B" font-weight="700" font-family="Pretendard">장애·오류</text>
-          <text x="282" y="71" font-family="JetBrains Mono" font-size="9.5" fill="#8C4A2B">4.7% · 73.2</text>
+          <text x="282" y="57" font-size="12.5" fill="#8C4A2B" font-weight="700" font-family="Pretendard">장애·오류</text>
+          <text x="282" y="71" font-family="JetBrains Mono" font-size="10.5" fill="#8C4A2B">4.7% · 73.2</text>
         </g>
         <!-- 불만·클레임 3.4 / 73.0 — RISK (leader line out of risk zone) -->
         <g>
           <circle cx="131.2" cy="71.5" r="9" fill="#B05A3B" opacity="0.95"/>
           <circle cx="131.2" cy="71.5" r="15" fill="none" stroke="#B05A3B" stroke-width="1" opacity="0.4"/>
           <line x1="141" y1="71.5" x2="275" y2="104" stroke="#B05A3B" stroke-width="0.8" opacity="0.7"/>
-          <text x="282" y="103" font-size="11.5" fill="#8C4A2B" font-weight="700" font-family="Pretendard">불만·클레임</text>
-          <text x="282" y="117" font-family="JetBrains Mono" font-size="9.5" fill="#8C4A2B">3.4% · 73.0</text>
+          <text x="282" y="103" font-size="12.5" fill="#8C4A2B" font-weight="700" font-family="Pretendard">불만·클레임</text>
+          <text x="282" y="117" font-family="JetBrains Mono" font-size="10.5" fill="#8C4A2B">3.4% · 73.0</text>
         </g>
         <!-- FAQ 4.6 / 38.5 → (152.8, 226.75) -->
         <g>
           <circle cx="152.8" cy="226.75" r="5.5" fill="#A6BFB1" opacity="0.9"/>
           <text x="168" y="224" font-size="10.5" fill="#3A3E39" font-family="Pretendard">FAQ · 단순 안내</text>
-          <text x="168" y="236" font-family="JetBrains Mono" font-size="9" fill="#6E7269">4.6% · 38.5</text>
+          <text x="168" y="236" font-family="JetBrains Mono" font-size="10" fill="#6E7269">4.6% · 38.5</text>
         </g>
         <!-- 기타 3.85 / 48.5 → (139, 182) -->
         <g>
@@ -394,7 +394,7 @@
       <p class="p3-take">
         <span class="p3-take-mark">▮</span>
         자동화부터 검토할 유형과 품질관리로 먼저 챙겨야 할 유형이 서로 다른 자리에 모였습니다.<br>
-        → <b>자동화 우선군:</b> FAQ(자동화 90점)·업무처리(75점) / <b>품질관리 우선군:</b> 장애·오류(Auto QA 85점)·불만·클레임(Auto QA 95점)
+        → <b style="color:var(--accent)">자동화 우선군:</b> FAQ(자동화 90점)·업무처리(75점) / <b style="color:var(--warn)">품질관리 우선군:</b> 장애·오류(Auto QA 85점)·불만·클레임(Auto QA 95점)
       </p>
 
       <ul class="p3-bullets">
@@ -443,8 +443,8 @@
 
       <p class="p3-note mono">
         // competitor note<br>
-        KT [규모·효과] 월 1,500만 콜 · LGU+ [품질·상담지원] 처리시간 7%↓ · SKT [도입편의] 3개월 10개+<br>
-        → NAVER [운영구성·관측성] keyword session · 불완전판매 모니터링 → P4 실행안으로 연결
+        <b style="color:var(--ink)">KT</b> [규모·효과] 월 1,500만 콜 · <b style="color:var(--ink)">LGU+</b> [품질·상담지원] 처리시간 7%↓ · <b style="color:var(--ink)">SKT</b> [도입편의] 3개월 10개+<br>
+        → <b style="color:var(--accent)">NAVER</b> [운영구성·관측성] keyword session · 불완전판매 모니터링 → P4 실행안으로 연결
       </p>
     </aside>
   </div>
@@ -543,8 +543,8 @@
         <p class="p4-block-label mono">기준 · CRITERIA</p>
         <ul>
           <li>통화 건수 / 상담원 연결률 · 자동화율</li>
-          <li>keyword session · active session 실시간 관측</li>
-          <li>불완전판매 모니터링 · Inbound/Outbound 캠페인 현황</li>
+          <li><b>keyword session · active session</b> 실시간 관측</li>
+          <li><b>불완전판매 모니터링</b> · Inbound/Outbound 캠페인 현황</li>
         </ul>
       </section>
 
