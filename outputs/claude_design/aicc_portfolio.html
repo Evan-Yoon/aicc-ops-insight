@@ -27,8 +27,8 @@
         <p class="subtitle">도입 단계부터 월간 KPI까지, CS 운영자 관점에서 풀어 본 개인 프로젝트</p>
       </div>
       <p class="p1-oneline">
-        공개 고객지원 데이터 <b>29,872건</b>과 경쟁사 공개지표 <b>35건+</b>을 바탕으로,<br>
-        CLOVA AiCall 운영 담당자 입장에서 고객 문의를 어떻게 <span class="hl">운영 KPI</span>와 <span class="hl">품질관리 기준</span>으로 풀어낼 수 있을지 정리해 봤습니다.
+        Bitext 공개 taxonomy(26,872건) + Support ticket(3,000건)을 <span class="hl">AICC 운영 레이블·시나리오·품질관리 우선순위</span>로 재분류하고,<br>
+        경쟁사 공개지표 <b>35건+</b>와 대조해 CLOVA AiCall 운영 담당자 관점의 <span class="hl">실행 프레임</span>을 설계해 봤습니다.
       </p>
     </div>
 
@@ -82,31 +82,31 @@
     <div class="flow-node">
       <div class="flow-step mono">01</div>
       <div class="flow-title">공개<br>고객지원 데이터</div>
-      <div class="flow-meta mono">29,872 rows</div>
+      <div class="flow-meta mono">Bitext 27 intent →<br>AICC 운영 관점 번역</div>
     </div>
     <div class="flow-arrow">→</div>
     <div class="flow-node">
       <div class="flow-step mono">02</div>
       <div class="flow-title">8개 문의<br>레이블</div>
-      <div class="flow-meta mono">분류 기준</div>
+      <div class="flow-meta mono">AiCall 시나리오 타입<br>기준 재분류</div>
     </div>
     <div class="flow-arrow">→</div>
     <div class="flow-node">
       <div class="flow-step mono">03</div>
       <div class="flow-title">AiCall<br>Scenario 매핑</div>
-      <div class="flow-meta mono">Global · Main · QA · Repair</div>
+      <div class="flow-meta mono">문의 유형별 적합<br>시나리오 타입 대응</div>
     </div>
     <div class="flow-arrow">→</div>
     <div class="flow-node">
       <div class="flow-step mono">04</div>
       <div class="flow-title">운영 KPI<br>점수화</div>
-      <div class="flow-meta mono">priority_score</div>
+      <div class="flow-meta mono">자동화 적합도 + 위험도<br>가중 0–100점 산출</div>
     </div>
     <div class="flow-arrow">→</div>
     <div class="flow-node flow-node--out">
       <div class="flow-step mono">05</div>
       <div class="flow-title">경쟁사 공개지표<br>비교</div>
-      <div class="flow-meta mono">benchmark.csv</div>
+      <div class="flow-meta mono">KT·LGU+·SKT<br>공개 KPI 노출도 대조</div>
     </div>
   </div>
 
@@ -149,39 +149,37 @@
         <figcaption class="p2-viz-cap mono">FIG · 8개 운영 레이블 비중 (29,872건 기준)</figcaption>
         <svg viewBox="0 0 520 60" class="p2-stack" preserveAspectRatio="none">
           <g>
-            <rect x="0"      y="22" width="172.12" height="22" fill="#2F5D4C"/>
-            <rect x="172.12" y="22" width="99.84"  height="22" fill="#54806F"/>
-            <rect x="271.96" y="22" width="82.16"  height="22" fill="#7AA493"/>
-            <rect x="354.12" y="22" width="70.20"  height="22" fill="#A6BFB1"/>
-            <rect x="424.32" y="22" width="24.44"  height="22" fill="#8C4A2B"/>
-            <rect x="448.76" y="22" width="23.92"  height="22" fill="#C58F73"/>
-            <rect x="472.68" y="22" width="17.68"  height="22" fill="#B05A3B"/>
-            <rect x="490.36" y="22" width="29.64"  height="22" fill="#C9C5B6"/>
+            <rect x="0"      y="22" width="172.26" height="22" fill="#2F5D4C"/>
+            <rect x="172.26" y="22" width="130.00" height="22" fill="#54806F"/>
+            <rect x="302.26" y="22" width="95.21"  height="22" fill="#7AA493"/>
+            <rect x="397.47" y="22" width="36.41"  height="22" fill="#A6BFB1"/>
+            <rect x="433.88" y="22" width="24.59"  height="22" fill="#8C4A2B"/>
+            <rect x="458.47" y="22" width="24.10"  height="22" fill="#C58F73"/>
+            <rect x="482.57" y="22" width="17.41"  height="22" fill="#B05A3B"/>
+            <rect x="499.98" y="22" width="20.04"  height="22" fill="#C9C5B6"/>
           </g>
           <g font-family="JetBrains Mono" font-size="10" fill="#FFFFFF" font-weight="600" text-anchor="middle">
-            <text x="86.06"  y="36.5">33.1%</text>
-            <text x="222.04" y="36.5">19.2%</text>
-            <text x="313.04" y="36.5">15.8%</text>
-            <text x="389.22" y="36.5">13.5%</text>
+            <text x="86.13"  y="36.5">33.1%</text>
+            <text x="237.26" y="36.5">25.0%</text>
+            <text x="349.87" y="36.5">18.3%</text>
           </g>
           <g font-family="Pretendard" font-size="11" fill="#3A3E39" text-anchor="middle">
-            <text x="86.06"  y="15">업무 처리</text>
-            <text x="222.04" y="15">결제·청구</text>
-            <text x="313.04" y="15">계정·인증</text>
-            <text x="389.22" y="15">상담원 연결</text>
+            <text x="86.13"  y="15">업무 처리</text>
+            <text x="237.26" y="15">결제·청구</text>
+            <text x="349.87" y="15">계정·인증</text>
           </g>
           <g stroke="#3A3E39" stroke-width="0.6">
-            <line x1="436.54" y1="44" x2="436.54" y2="50"/>
-            <line x1="460.72" y1="44" x2="460.72" y2="50"/>
-            <line x1="481.52" y1="44" x2="481.52" y2="50"/>
-            <line x1="505.18" y1="44" x2="505.18" y2="50"/>
+            <line x1="446.18" y1="44" x2="446.18" y2="50"/>
+            <line x1="470.52" y1="44" x2="470.52" y2="50"/>
+            <line x1="491.28" y1="44" x2="491.28" y2="50"/>
+            <line x1="510.00" y1="44" x2="510.00" y2="50"/>
           </g>
         </svg>
         <p class="p2-stack-legend mono">
-          // 장애 4.7% · FAQ 4.6% · 불만 3.4% · 기타 5.7%
+          // 상담원 연결 7.0% · 장애 4.7% · FAQ 4.6% · 불만 3.4% · 기타 3.9%
         </p>
         <p class="p2-viz-note mono">
-          // 상위 4개 레이블이 전체의 81.6%<br>
+          // 상위 4개 레이블이 전체의 83.4%<br>
           // 장애·불만은 합쳐도 8.1%지만 운영 우선순위는 가장 높음 → Page 3
         </p>
       </figure>
@@ -240,7 +238,7 @@
             </tr>
           </tbody>
         </table>
-        <p class="p2-comp-note mono">// <span style="display:inline-block;width:10px;height:9px;background:#E8E6DE;border-radius:1px;vertical-align:middle;margin-right:3px;"></span>회색 = 공개 자료 없음 · 그룹 내 최고값 대비 정규화 · <b style="color:var(--accent)">품질관리 50</b> → P4 운영 차별화 기준으로 연결</p>
+        <p class="p2-comp-note mono">// <span style="display:inline-block;width:10px;height:9px;background:#E8E6DE;border-radius:1px;vertical-align:middle;margin-right:3px;"></span>회색 = 공개 자료 없음 · 그룹 내 최고값 대비 정규화 · KT 월 1,500만 콜 · LGU+ 처리시간 7%↓ · SKT 구독형 3개월 10개+ · <b style="color:var(--accent)">NAVER 품질관리 50</b> → P4 차별화 기준</p>
       </div>
     </div>
   </div>
@@ -336,23 +334,24 @@
           <text x="654" y="123" font-size="11" fill="#1E211E" font-weight="600" text-anchor="end" font-family="Pretendard">업무 처리 요청</text>
           <text x="654" y="136" font-family="JetBrains Mono" font-size="9.5" fill="#3A3E39" text-anchor="end">33.1% · 58.0</text>
         </g>
-        <!-- 결제·청구 19.2 / 54.5 → (415.6, 154.75) -->
+        <!-- 결제·청구 25.00 / 60.0 → (520, 130) -->
         <g>
-          <circle cx="415.6" cy="154.75" r="6" fill="#7AA493" opacity="0.9"/>
-          <text x="423" y="151" font-size="10.5" fill="#3A3E39" font-family="Pretendard">결제·청구</text>
-          <text x="423" y="163" font-family="JetBrains Mono" font-size="9" fill="#6E7269">19.2% · 54.5</text>
+          <circle cx="520" cy="130" r="6" fill="#7AA493" opacity="0.9"/>
+          <text x="528" y="127" font-size="10.5" fill="#3A3E39" font-family="Pretendard">결제·청구</text>
+          <text x="528" y="140" font-family="JetBrains Mono" font-size="9" fill="#6E7269">25.0% · 60.0</text>
         </g>
-        <!-- 계정·인증 15.8 / 51.2 → (354.4, 169.6) -->
+        <!-- 계정·인증 18.31 / 64.2 → (400, 111) -->
         <g>
-          <circle cx="354.4" cy="169.6" r="5.5" fill="#7AA493" opacity="0.9"/>
-          <text x="346" y="166" font-size="10.5" fill="#3A3E39" font-family="Pretendard" text-anchor="end">계정·인증</text>
-          <text x="346" y="178" font-family="JetBrains Mono" font-size="9" fill="#6E7269" text-anchor="end">15.8% · 51.2</text>
+          <circle cx="400" cy="111" r="5.5" fill="#7AA493" opacity="0.9"/>
+          <text x="392" y="108" font-size="10.5" fill="#3A3E39" font-family="Pretendard" text-anchor="end">계정·인증</text>
+          <text x="392" y="120" font-family="JetBrains Mono" font-size="9" fill="#6E7269" text-anchor="end">18.3% · 64.2</text>
         </g>
-        <!-- 상담원 연결 13.5 / 49.8 → (313, 175.9) -->
+        <!-- 상담원 연결 7.00 / 60.0 → (196, 130) -->
         <g>
-          <circle cx="313" cy="175.9" r="5" fill="#A6BFB1" opacity="0.9"/>
-          <text x="313" y="195" font-size="10.5" fill="#3A3E39" font-family="Pretendard" text-anchor="middle">상담원 연결</text>
-          <text x="313" y="207" font-family="JetBrains Mono" font-size="9" fill="#6E7269" text-anchor="middle">13.5% · 49.8</text>
+          <circle cx="196" cy="130" r="5" fill="#A6BFB1" opacity="0.9"/>
+          <line x1="205" y1="130" x2="268" y2="162" stroke="#A6BFB1" stroke-width="0.8" opacity="0.7"/>
+          <text x="276" y="160" font-size="10.5" fill="#3A3E39" font-family="Pretendard">상담원 연결</text>
+          <text x="276" y="172" font-family="JetBrains Mono" font-size="9" fill="#6E7269">7.0% · 60.0</text>
         </g>
         <!-- 장애·오류 4.7 / 73.2 — RISK (leader line out of risk zone) -->
         <g>
@@ -376,10 +375,10 @@
           <text x="168" y="224" font-size="10.5" fill="#3A3E39" font-family="Pretendard">FAQ · 단순 안내</text>
           <text x="168" y="236" font-family="JetBrains Mono" font-size="9" fill="#6E7269">4.6% · 38.5</text>
         </g>
-        <!-- 기타 5.7 / 31.5 → (172.6, 258.25) -->
+        <!-- 기타 3.85 / 48.5 → (139, 182) -->
         <g>
-          <circle cx="172.6" cy="258.25" r="4.5" fill="#C9C5B6" opacity="0.9"/>
-          <text x="183" y="262" font-size="10" fill="#6E7269" font-family="Pretendard">기타 · 5.7% · 31.5</text>
+          <circle cx="139" cy="182" r="4.5" fill="#C9C5B6" opacity="0.9"/>
+          <text x="150" y="186" font-size="10" fill="#6E7269" font-family="Pretendard">기타 · 3.9% · 48.5</text>
         </g>
 
         <!-- annotation arrow from high-volume to risk cluster -->
@@ -394,8 +393,8 @@
     <aside class="p3-side">
       <p class="p3-take">
         <span class="p3-take-mark">▮</span>
-        자동화부터 검토할 유형과<br>
-        <b>품질관리로 먼저 챙겨야 할 유형이 서로 다른 자리에 모였습니다.</b>
+        자동화부터 검토할 유형과 품질관리로 먼저 챙겨야 할 유형이 서로 다른 자리에 모였습니다.<br>
+        → <b>자동화 우선군:</b> FAQ(자동화 90점)·업무처리(75점) / <b>품질관리 우선군:</b> 장애·오류(Auto QA 85점)·불만·클레임(Auto QA 95점)
       </p>
 
       <ul class="p3-bullets">
@@ -444,8 +443,8 @@
 
       <p class="p3-note mono">
         // competitor note<br>
-        KT · LGU+ · SKT/SK AX는 수주액, 고객사 수, Auto QA, 상담 어시스턴트 등<br>
-        공개 운영지표를 꾸준히 노출 → 정기 모니터링 항목으로 잡았습니다.
+        KT [규모·효과] 월 1,500만 콜 · LGU+ [품질·상담지원] 처리시간 7%↓ · SKT [도입편의] 3개월 10개+<br>
+        → NAVER [운영구성·관측성] keyword session · 불완전판매 모니터링 → P4 실행안으로 연결
       </p>
     </aside>
   </div>
@@ -471,7 +470,7 @@
   <div class="p4-hd">
     <p class="eyebrow">04 · Action</p>
     <h2 class="section-title">단계별 <span class="accent">운영 실행안</span></h2>
-    <p class="section-sub">// 장애·불만 priority 73+ × 품질관리 차별화 포인트 — 두 발견을 3단계 운영 기준으로</p>
+    <p class="section-sub">// 장애·불만 priority 73+ × KT·LGU+ 운영 성과 공개 패턴 → 3단계 실행 기준으로</p>
   </div>
 
   <div class="p4-cards">
@@ -543,9 +542,9 @@
       <section class="p4-block">
         <p class="p4-block-label mono">기준 · CRITERIA</p>
         <ul>
-          <li>통화 건수 / 상담원 연결률</li>
-          <li>자동화율 / Auto QA 비율</li>
-          <li>품질 지표 추이 (장애·불만 중심)</li>
+          <li>통화 건수 / 상담원 연결률 · 자동화율</li>
+          <li>keyword session · active session 실시간 관측</li>
+          <li>불완전판매 모니터링 · Inbound/Outbound 캠페인 현황</li>
         </ul>
       </section>
 
@@ -554,7 +553,7 @@
         <ul>
           <li>고객사별 월간 KPI 리포트</li>
           <li>계약·정산 검토</li>
-          <li>품질관리 카테고리 경쟁사 갱신</li>
+          <li>KT·LGU+·SKT 공개 KPI 정기 갱신</li>
         </ul>
       </section>
     </article>
